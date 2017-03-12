@@ -13,6 +13,7 @@
 </head>
 
 <body>
+   <div id="mainWrapper">
     <div class="generic-container">
         <%@include file="authheader.jsp" %>
 
@@ -113,5 +114,6 @@
             </div>
         </form:form>
     </div>
+   </div>
 </body>
 </html>

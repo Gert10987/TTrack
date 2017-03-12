@@ -13,6 +13,7 @@
 </head>
 
 <body>
+ <div id="mainWrapper">
     <div class="generic-container">
         <%@include file="authheader.jsp" %>
         <div class="panel panel-default">
@@ -58,5 +59,6 @@
             </div>
         </sec:authorize>
     </div>
+   </div>
 </body>
 </html>
