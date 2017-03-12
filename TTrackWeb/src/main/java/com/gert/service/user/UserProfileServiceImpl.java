@@ -1,7 +1,7 @@
-package com.gert.service;
+package com.gert.service.user;
 
-import com.gert.dao.UserProfileDao;
-import com.gert.model.UserProfile;
+import com.gert.dao.user.UserProfileDao;
+import com.gert.model.user.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

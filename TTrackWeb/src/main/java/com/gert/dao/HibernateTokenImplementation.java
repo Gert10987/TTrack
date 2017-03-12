@@ -1,6 +1,6 @@
 package com.gert.dao;
 
-import com.gert.model.PersistentLogin;
+import com.gert.model.user.PersistentLogin;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.LoggerFactory;

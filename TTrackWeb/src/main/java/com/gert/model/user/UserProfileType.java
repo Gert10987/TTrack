@@ -1,4 +1,4 @@
-package com.gert.model;
+package com.gert.model.user;
 
 import java.io.Serializable;
 

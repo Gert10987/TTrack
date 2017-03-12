@@ -1,9 +1,9 @@
 package com.gert.controllers;
 
-import com.gert.model.User;
-import com.gert.model.UserProfile;
-import com.gert.service.UserProfileService;
-import com.gert.service.UserService;
+import com.gert.model.user.User;
+import com.gert.model.user.UserProfile;
+import com.gert.service.user.UserProfileService;
+import com.gert.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.authentication.AuthenticationTrustResolver;

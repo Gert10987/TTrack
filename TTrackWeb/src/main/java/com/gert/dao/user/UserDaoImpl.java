@@ -1,6 +1,7 @@
-package com.gert.dao;
+package com.gert.dao.user;
 
-import com.gert.model.User;
+import com.gert.dao.AbstractDao;
+import com.gert.model.user.User;
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.criterion.Order;

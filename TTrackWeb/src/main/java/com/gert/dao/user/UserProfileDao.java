@@ -1,6 +1,6 @@
-package com.gert.dao;
+package com.gert.dao.user;
 
-import com.gert.model.UserProfile;
+import com.gert.model.user.UserProfile;
 
 import java.util.List;
 

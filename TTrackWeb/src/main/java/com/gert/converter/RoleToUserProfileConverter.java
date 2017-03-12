@@ -1,7 +1,7 @@
 package com.gert.converter;
 
-import com.gert.model.UserProfile;
-import com.gert.service.UserProfileService;
+import com.gert.model.user.UserProfile;
+import com.gert.service.user.UserProfileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.gert.model;
+package com.gert.model.user;
 
 import javax.persistence.*;
 import java.io.Serializable;

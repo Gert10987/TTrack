@@ -1,6 +1,6 @@
-package com.gert.service;
+package com.gert.service.user;
 
-import com.gert.model.UserProfile;
+import com.gert.model.user.UserProfile;
 
 import java.util.List;
 

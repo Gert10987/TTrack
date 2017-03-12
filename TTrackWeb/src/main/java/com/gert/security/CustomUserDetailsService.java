@@ -1,8 +1,8 @@
 package com.gert.security;
 
-import com.gert.model.User;
-import com.gert.model.UserProfile;
-import com.gert.service.UserService;
+import com.gert.model.user.User;
+import com.gert.model.user.UserProfile;
+import com.gert.service.user.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

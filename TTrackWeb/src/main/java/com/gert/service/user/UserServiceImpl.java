@@ -1,7 +1,7 @@
-package com.gert.service;
+package com.gert.service.user;
 
-import com.gert.dao.UserDao;
-import com.gert.model.User;
+import com.gert.dao.user.UserDao;
+import com.gert.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
