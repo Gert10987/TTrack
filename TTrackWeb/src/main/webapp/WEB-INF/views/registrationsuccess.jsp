@@ -11,6 +11,7 @@
     <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
 </head>
 <body>
+ <div id="mainWrapper">
     <div class="generic-container">
         <%@include file="authheader.jsp" %>
 
@@ -22,6 +23,7 @@
             Go to <a href="<c:url value='/list' />">Users List</a>
         </span>
     </div>
+  </div>
 </body>
 
 </html>

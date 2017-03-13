@@ -24,6 +24,7 @@ public class EmployerDaoImpl extends AbstractDao<Integer, Employer> implements E
 
     @SuppressWarnings("unchecked")
     public List<Employer> findAllUsers() {
+
         Criteria criteria = createEntityCriteria().addOrder(Order.asc("firstName"));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);//To avoid duplicates.
         List<Employer> employers = (List<Employer>) criteria.list();

@@ -58,8 +58,8 @@ public class AppController {
     @RequestMapping(value = {"/", "/list"}, method = RequestMethod.GET)
     public String listUsers(ModelMap model) {
 
-        List<User> users = userService.findAllUsers();
-        model.addAttribute("users", users);
+        List<Employer> employers = employerService.findAllUsers();
+        model.addAttribute("employers", employers);
         model.addAttribute("loggedinuser", getPrincipal());
         return "userslist";
     }

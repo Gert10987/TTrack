@@ -18,14 +18,15 @@
         <%@include file="authheader.jsp" %>
         <div class="panel panel-default">
               <!-- Default panel contents -->
-            <div class="panel-heading"><span class="lead">List of Users </span></div>
+            <div class="panel-heading"><span class="lead">List of Employers </span></div>
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
                         <th>Email</th>
                         <th>SSO ID</th>
+                        <th>Phone</th>
                         <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
                             <th width="100"></th>
                         </sec:authorize>
@@ -36,12 +37,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${users}" var="user">
+                <c:forEach items="${employers}" var="employer">
                     <tr>
-                        <td>${user.firstName}</td>
-                        <td>${user.lastName}</td>
-                        <td>${user.email}</td>
-                        <td>${user.ssoId}</td>
+                        <td>${employer.firstName}</td>
+                        <td>${employer.lastName}</td>
+                        <td>${employer.email}</td>
+                        <td>${employer.ssoId}</td>
+                        <td>${employer.phone}</td>
                         <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
                             <td><a href="<c:url value='/edit-user-${user.ssoId}' />" class="btn btn-success custom-width">edit</a></td>
                         </sec:authorize>
