@@ -1,4 +1,4 @@
-package com.gert.model.user;
+package com.gert.model.employer;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -11,8 +11,8 @@ import java.util.Set;
  * Created by gert on 03.03.17.
  */
 @Entity
-@Table(name="APP_USER")
-public class User implements Serializable {
+@Table(name="EMPLOYER")
+public class Employer implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,11 +39,8 @@ public class User implements Serializable {
     private String email;
 
     @NotEmpty
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "APP_USER_USER_PROFILE",
-            joinColumns = {@JoinColumn(name = "USER_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "USER_PROFILE_ID")})
-    private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
+    @Column(name = "PHONE", nullable = false)
+    private String phone;
 
     public Integer getId() {
         return id;
@@ -93,14 +90,13 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public Set<UserProfile> getUserProfiles() {
-        return userProfiles;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setUserProfiles(Set<UserProfile> userProfiles) {
-        this.userProfiles = userProfiles;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
-
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -116,9 +112,9 @@ public class User implements Serializable {
             return true;
         if (obj == null)
             return false;
-        if (!(obj instanceof User))
+        if (!(obj instanceof Employer))
             return false;
-        User other = (User) obj;
+        Employer other = (Employer) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -142,5 +138,6 @@ public class User implements Serializable {
                 + ", firstName=" + firstName + ", lastName=" + lastName
                 + ", email=" + email + "]";
     }
+
 }
 

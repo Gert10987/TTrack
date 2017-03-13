@@ -1,7 +1,9 @@
 package com.gert.controllers;
 
+import com.gert.model.employer.Employer;
 import com.gert.model.user.User;
 import com.gert.model.user.UserProfile;
+import com.gert.service.employer.EmployerService;
 import com.gert.service.user.UserProfileService;
 import com.gert.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,9 @@ public class AppController {
     UserService userService;
 
     @Autowired
+    EmployerService employerService;
+
+    @Autowired
     UserProfileService userProfileService;
 
     @Autowired
@@ -64,8 +69,8 @@ public class AppController {
      */
     @RequestMapping(value = {"/newuser"}, method = RequestMethod.GET)
     public String newUser(ModelMap model) {
-        User user = new User();
-        model.addAttribute("user", user);
+        Employer employer = new Employer();
+        model.addAttribute("employer", employer);
         model.addAttribute("edit", false);
         model.addAttribute("loggedinuser", getPrincipal());
         return "registration";
@@ -76,7 +81,7 @@ public class AppController {
      * saving user in database. It also validates the user input
      */
     @RequestMapping(value = {"/newuser"}, method = RequestMethod.POST)
-    public String saveUser(@Valid User user, BindingResult result,
+    public String saveUser(Employer employer, BindingResult result,
                            ModelMap model) {
 
         if (result.hasErrors()) {
@@ -85,21 +90,21 @@ public class AppController {
 
         /*
          * Preferred way to achieve uniqueness of field [sso] should be implementing custom @Unique annotation
-         * and applying it on field [sso] of Model class [User].
+         * and applying it on field [sso] of Model class [Employer].
          *
          * Below mentioned peace of code [if block] is to demonstrate that you can fill custom errors outside the validation
          * framework as well while still using internationalized messages.
          *
          */
-        if (!userService.isUserSSOUnique(user.getId(), user.getSsoId())) {
-            FieldError ssoError = new FieldError("user", "ssoId", messageSource.getMessage("non.unique.ssoId", new String[]{user.getSsoId()}, Locale.getDefault()));
+        if (!employerService.isUserSSOUnique(employer.getId(), employer.getSsoId())) {
+            FieldError ssoError = new FieldError("user", "ssoId", messageSource.getMessage("non.unique.ssoId", new String[]{employer.getSsoId()}, Locale.getDefault()));
             result.addError(ssoError);
             return "registration";
         }
 
-        userService.saveUser(user);
+        employerService.saveUser(employer);
 
-        model.addAttribute("success", "User " + user.getFirstName() + " " + user.getLastName() + " registered successfully");
+        model.addAttribute("success", "Employer " + employer.getFirstName() + " " + employer.getLastName() + " registered successfully");
         model.addAttribute("loggedinuser", getPrincipal());
         //return "success";
         return "registrationsuccess";
@@ -111,6 +116,7 @@ public class AppController {
      */
     @RequestMapping(value = {"/edit-user-{ssoId}"}, method = RequestMethod.GET)
     public String editUser(@PathVariable String ssoId, ModelMap model) {
+
         User user = userService.findBySSO(ssoId);
         model.addAttribute("user", user);
         model.addAttribute("edit", true);
@@ -130,7 +136,7 @@ public class AppController {
             return "registration";
         }
 
-        /*//Uncomment below 'if block' if you WANT TO ALLOW UPDATING SSO_ID in UI which is a unique key to a User.
+        /*//Uncomment below 'if block' if you WANT TO ALLOW UPDATING SSO_ID in UI which is a unique key to a Employer.
         if(!userService.isUserSSOUnique(user.getId(), user.getSsoId())){
             FieldError ssoError =new FieldError("user","ssoId",messageSource.getMessage("non.unique.ssoId", new String[]{user.getSsoId()}, Locale.getDefault()));
             result.addError(ssoError);
@@ -140,7 +146,7 @@ public class AppController {
 
         userService.updateUser(user);
 
-        model.addAttribute("success", "User " + user.getFirstName() + " " + user.getLastName() + " updated successfully");
+        model.addAttribute("success", "Employer " + user.getFirstName() + " " + user.getLastName() + " updated successfully");
         model.addAttribute("loggedinuser", getPrincipal());
         return "registrationsuccess";
     }
@@ -157,7 +163,7 @@ public class AppController {
 
 
     /**
-     * This method will provide UserProfile list to views
+     * This method will provide EmployerProfile list to views
      */
     @ModelAttribute("roles")
     public List<UserProfile> initializeProfiles() {

@@ -1,6 +1,7 @@
-package com.gert.dao.user;
+package com.gert.dao.employer;
 
 import com.gert.dao.AbstractDao;
+import com.gert.model.employer.Employer;
 import com.gert.model.user.User;
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
@@ -15,35 +16,17 @@ import java.util.List;
 /**
  * Created by gert on 03.03.17.
  */
-@Repository("userDao")
-public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
+@Repository("employerDao")
+public class EmployerDaoImpl extends AbstractDao<Integer, Employer> implements EmployerDao {
 
-    static final Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
+    static final Logger logger = LoggerFactory.getLogger(EmployerDaoImpl.class);
 
-    public User findById(int id) {
-        User user = getByKey(id);
-        if(user!=null){
-            Hibernate.initialize(user.getUserProfiles());
-        }
-        return user;
-    }
-
-    public User findBySSO(String sso) {
-        logger.info("SSO : {}", sso);
-        Criteria crit = createEntityCriteria();
-        crit.add(Restrictions.eq("ssoId", sso));
-        User user = (User)crit.uniqueResult();
-        if(user!=null){
-            Hibernate.initialize(user.getUserProfiles());
-        }
-        return user;
-    }
 
     @SuppressWarnings("unchecked")
-    public List<User> findAllUsers() {
+    public List<Employer> findAllUsers() {
         Criteria criteria = createEntityCriteria().addOrder(Order.asc("firstName"));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);//To avoid duplicates.
-        List<User> users = (List<User>) criteria.list();
+        List<Employer> employers = (List<Employer>) criteria.list();
 
         // No need to fetch userProfiles since we are not showing them on list page. Let them lazy load.
         // Uncomment below lines for eagerly fetching of userProfiles if you want.
@@ -51,18 +34,27 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
         for(Employer user : users){
             Hibernate.initialize(user.getUserProfiles());
         }*/
-        return users;
+        return employers;
     }
 
-    public void save(User user) {
-        persist(user);
+
+    public Employer findById(int id) {
+        return null;
+    }
+
+    public Employer findBySSO(String sso) {
+        return null;
+    }
+
+    public void save(Employer employer) {
+        persist(employer);
     }
 
     public void deleteBySSO(String sso) {
         Criteria crit = createEntityCriteria();
         crit.add(Restrictions.eq("ssoId", sso));
-        User user = (User)crit.uniqueResult();
-        delete(user);
+        Employer employer = (Employer) crit.uniqueResult();
+        delete(employer);
     }
 
 }
