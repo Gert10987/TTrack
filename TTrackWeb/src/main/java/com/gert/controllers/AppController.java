@@ -1,7 +1,6 @@
 package com.gert.controllers;
 
 import com.gert.model.employer.Employer;
-import com.gert.model.user.User;
 import com.gert.model.user.UserProfile;
 import com.gert.service.employer.EmployerService;
 import com.gert.service.user.UserProfileService;
@@ -83,7 +82,7 @@ public class AppController {
      * saving user in database. It also validates the user input
      */
     @RequestMapping(value = {"/newuser"}, method = RequestMethod.POST)
-    public String saveUser(Employer employer, BindingResult result,
+    public String saveUser(@Valid Employer employer, BindingResult result,
                            ModelMap model) {
 
         if (result.hasErrors()) {
