@@ -1,5 +1,6 @@
 .idea/
 TTrackWeb/TTrack.iml
 TTrackWeb/target
+TTrackWeb/src/main/resources/application.properties
 
 
