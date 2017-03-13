@@ -40,7 +40,16 @@ public class EmployerDaoImpl extends AbstractDao<Integer, Employer> implements E
 
     public Employer findBySSO(String sso) {
 
-        return null;
+        logger.info("SSO : {}", sso);
+        Criteria crit = createEntityCriteria();
+        crit.add(Restrictions.eq("ssoId", sso));
+        Employer employer = (Employer) crit.uniqueResult();
+
+        if(employer != null){
+
+            Hibernate.initialize(employer);
+        }
+        return employer;
     }
 
     public void save(Employer employer) {
