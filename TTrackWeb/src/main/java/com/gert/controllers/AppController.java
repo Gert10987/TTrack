@@ -61,7 +61,7 @@ public class AppController {
         List<Employer> employers = employerService.findAllUsers();
         model.addAttribute("employers", employers);
         model.addAttribute("loggedinuser", getPrincipal());
-        return "userslist";
+        return "employerList";
     }
 
     /**
