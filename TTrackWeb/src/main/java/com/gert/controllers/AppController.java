@@ -6,6 +6,7 @@ import com.gert.model.user.UserProfile;
 import com.gert.service.employer.EmployerService;
 import com.gert.service.user.UserProfileService;
 import com.gert.service.user.UserService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
@@ -60,7 +61,7 @@ public class AppController {
 
         List<Employer> employers = employerService.findAllUsers();
         model.addAttribute("employers", employers);
-        model.addAttribute("loggedinuser", getPrincipal());
+        model.addAttribute("loggedInUser", getPrincipal());
         return "employerList";
     }
 
@@ -69,10 +70,11 @@ public class AppController {
      */
     @RequestMapping(value = {"/newuser"}, method = RequestMethod.GET)
     public String newUser(ModelMap model) {
+
         Employer employer = new Employer();
         model.addAttribute("employer", employer);
         model.addAttribute("edit", false);
-        model.addAttribute("loggedinuser", getPrincipal());
+        model.addAttribute("loggedInUser", getPrincipal());
         return "registration";
     }
 
@@ -88,14 +90,6 @@ public class AppController {
             return "registration";
         }
 
-        /*
-         * Preferred way to achieve uniqueness of field [sso] should be implementing custom @Unique annotation
-         * and applying it on field [sso] of Model class [Employer].
-         *
-         * Below mentioned peace of code [if block] is to demonstrate that you can fill custom errors outside the validation
-         * framework as well while still using internationalized messages.
-         *
-         */
         if (!employerService.isUserSSOUnique(employer.getId(), employer.getSsoId())) {
             FieldError ssoError = new FieldError("user", "ssoId", messageSource.getMessage("non.unique.ssoId", new String[]{employer.getSsoId()}, Locale.getDefault()));
             result.addError(ssoError);
@@ -105,11 +99,9 @@ public class AppController {
         employerService.saveUser(employer);
 
         model.addAttribute("success", "Employer " + employer.getFirstName() + " " + employer.getLastName() + " registered successfully");
-        model.addAttribute("loggedinuser", getPrincipal());
-        //return "success";
-        return "registrationsuccess";
+        model.addAttribute("loggedInUser", getPrincipal());
+        return "registrationSuccess";
     }
-
 
     /**
      * This method will provide the medium to update an existing user.
@@ -117,10 +109,10 @@ public class AppController {
     @RequestMapping(value = {"/edit-user-{ssoId}"}, method = RequestMethod.GET)
     public String editUser(@PathVariable String ssoId, ModelMap model) {
 
-        User user = userService.findBySSO(ssoId);
-        model.addAttribute("user", user);
+        Employer employer = employerService.findBySSO(ssoId);
+        model.addAttribute("employer", employer);
         model.addAttribute("edit", true);
-        model.addAttribute("loggedinuser", getPrincipal());
+        model.addAttribute("loggedInUser", getPrincipal());
         return "registration";
     }
 
@@ -129,26 +121,18 @@ public class AppController {
      * updating user in database. It also validates the user input
      */
     @RequestMapping(value = {"/edit-user-{ssoId}"}, method = RequestMethod.POST)
-    public String updateUser(@Valid User user, BindingResult result,
+    public String updateUser(@Valid Employer employer, BindingResult result,
                              ModelMap model, @PathVariable String ssoId) {
 
         if (result.hasErrors()) {
             return "registration";
         }
 
-        /*//Uncomment below 'if block' if you WANT TO ALLOW UPDATING SSO_ID in UI which is a unique key to a Employer.
-        if(!userService.isUserSSOUnique(user.getId(), user.getSsoId())){
-            FieldError ssoError =new FieldError("user","ssoId",messageSource.getMessage("non.unique.ssoId", new String[]{user.getSsoId()}, Locale.getDefault()));
-            result.addError(ssoError);
-            return "registration";
-        }*/
+        employerService.updateUser(employer);
 
-
-        userService.updateUser(user);
-
-        model.addAttribute("success", "Employer " + user.getFirstName() + " " + user.getLastName() + " updated successfully");
-        model.addAttribute("loggedinuser", getPrincipal());
-        return "registrationsuccess";
+        model.addAttribute("success", "Employer " + employer.getFirstName() + " " + employer.getLastName() + " updated successfully");
+        model.addAttribute("loggedInUser", getPrincipal());
+        return "registrationSuccess";
     }
 
 
@@ -163,7 +147,7 @@ public class AppController {
 
 
     /**
-     * This method will provide EmployerProfile list to views
+     * This method will provide userProfile list to views
      */
     @ModelAttribute("roles")
     public List<UserProfile> initializeProfiles() {
@@ -175,7 +159,7 @@ public class AppController {
      */
     @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
     public String accessDeniedPage(ModelMap model) {
-        model.addAttribute("loggedinuser", getPrincipal());
+        model.addAttribute("loggedInUser", getPrincipal());
         return "accessDenied";
     }
 
@@ -211,7 +195,8 @@ public class AppController {
      * This method returns the principal[user-name] of logged-in user.
      */
     private String getPrincipal() {
-        String userName = null;
+
+        String userName = StringUtils.EMPTY;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (principal instanceof UserDetails) {

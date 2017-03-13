@@ -17,7 +17,9 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 
     @SuppressWarnings("unchecked")
     public AbstractDao(){
-        this.persistentClass =(Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[1];
+        this.persistentClass =(Class<T>)
+                ((ParameterizedType)
+                        this.getClass().getGenericSuperclass()).getActualTypeArguments()[1];
     }
 
     @Autowired

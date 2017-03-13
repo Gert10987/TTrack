@@ -20,10 +20,11 @@ public class RoleToUserProfileConverter implements Converter<Object, UserProfile
     UserProfileService userProfileService;
 
     /**
-     * Gets EmployerProfile by Id
+     * Gets UserProfile by Id
      * @see org.springframework.core.convert.converter.Converter#convert(java.lang.Object)
      */
     public UserProfile convert(Object element) {
+
         Integer id = Integer.parseInt((String)element);
         UserProfile profile = userProfileService.findById(id);
         logger.info("Profile : {}",profile);

@@ -60,8 +60,7 @@ body, #mainWrapper, .form-control{
 }
 
 #mainWrapper {
-	/*height: 720px; Without explicit px values, % in children's does not work*/
-	height: 100vh; /*with Viewport-Percentage, we can handles all devices screens  */
+	height: 100vh;
 	padding-left:10px;
 	padding-right:10px;
 	padding-bottom:10px;

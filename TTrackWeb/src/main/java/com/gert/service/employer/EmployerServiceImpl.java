@@ -39,11 +39,6 @@ public class EmployerServiceImpl implements EmployerService {
         dao.save(employer);
     }
 
-    /*
-     * Since the method is running with Transaction, No need to call hibernate update explicitly.
-     * Just fetch the entity from db and update it with proper values within transaction.
-     * It will be updated in db once transaction ends.
-     */
     public void updateUser(Employer employer) {
 
         Employer entity = dao.findById(employer.getId());
@@ -58,7 +53,6 @@ public class EmployerServiceImpl implements EmployerService {
             entity.setPhone(employer.getPhone());
         }
     }
-
 
     public void deleteUserBySSO(String sso) {
         dao.deleteBySSO(sso);

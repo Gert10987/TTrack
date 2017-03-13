@@ -29,21 +29,17 @@ public class EmployerDaoImpl extends AbstractDao<Integer, Employer> implements E
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);//To avoid duplicates.
         List<Employer> employers = (List<Employer>) criteria.list();
 
-        // No need to fetch userProfiles since we are not showing them on list page. Let them lazy load.
-        // Uncomment below lines for eagerly fetching of userProfiles if you want.
-        /*
-        for(Employer user : users){
-            Hibernate.initialize(user.getUserProfiles());
-        }*/
         return employers;
     }
 
 
     public Employer findById(int id) {
+
         return null;
     }
 
     public Employer findBySSO(String sso) {
+
         return null;
     }
 

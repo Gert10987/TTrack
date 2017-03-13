@@ -138,7 +138,7 @@ public class User implements Serializable {
      */
     @Override
     public String toString() {
-        return "Employer [id=" + id + ", ssoId=" + ssoId + ", password=" + password
+        return "Employer [id=" + id + ", ssoId=" + ssoId
                 + ", firstName=" + firstName + ", lastName=" + lastName
                 + ", email=" + email + "]";
     }

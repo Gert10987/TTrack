@@ -128,13 +128,9 @@ public class Employer implements Serializable {
         return true;
     }
 
-    /*
-     * DO-NOT-INCLUDE passwords in toString function.
-     * It is done here just for convenience purpose.
-     */
     @Override
     public String toString() {
-        return "Employer [id=" + id + ", ssoId=" + ssoId + ", password=" + password
+        return "Employer [id=" + id + ", ssoId=" + ssoId
                 + ", firstName=" + firstName + ", lastName=" + lastName
                 + ", email=" + email + "]";
     }
