@@ -16,11 +16,11 @@ public interface EmployerService {
 
     void saveUser(Employer employer);
 
-    void updateUser(Employer employer);
+    void createNewEmployer(Employer employer);
 
     void deleteUserBySSO(String sso);
 
-    List<Employer> findAllUsers();
+    List<Employer> findAllEmployersByBossId(int bossId);
 
     boolean isUserSSOUnique(Integer id, String sso);
 

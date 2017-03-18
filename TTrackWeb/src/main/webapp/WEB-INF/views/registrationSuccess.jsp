@@ -11,7 +11,7 @@
     <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
 </head>
 <body>
- <div id="mainWrapper">
+<div id="mainWrapper">
     <div class="generic-container">
         <%@include file="authHeader.jsp" %>
 

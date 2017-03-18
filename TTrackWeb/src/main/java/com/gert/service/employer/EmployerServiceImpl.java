@@ -1,9 +1,7 @@
 package com.gert.service.employer;
 
 import com.gert.dao.employer.EmployerDao;
-import com.gert.dao.user.UserDao;
 import com.gert.model.employer.Employer;
-import com.gert.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -35,13 +33,15 @@ public class EmployerServiceImpl implements EmployerService {
     }
 
     public void saveUser(Employer employer) {
+
         employer.setPassword(passwordEncoder.encode(employer.getPassword()));
         dao.save(employer);
     }
 
-    public void updateUser(Employer employer) {
+    public void createNewEmployer(Employer employer) {
 
         Employer entity = dao.findById(employer.getId());
+
         if(entity!=null){
             entity.setSsoId(employer.getSsoId());
             if(!employer.getPassword().equals(entity.getPassword())){
@@ -51,6 +51,7 @@ public class EmployerServiceImpl implements EmployerService {
             entity.setLastName(employer.getLastName());
             entity.setEmail(employer.getEmail());
             entity.setPhone(employer.getPhone());
+            entity.setBossID(employer.getBossID());
         }
     }
 
@@ -58,8 +59,9 @@ public class EmployerServiceImpl implements EmployerService {
         dao.deleteBySSO(sso);
     }
 
-    public List<Employer> findAllUsers() {
-        return dao.findAllUsers();
+    public List<Employer> findAllEmployersByBossId(int bossId) {
+
+        return dao.findAllEmployersByBossId(bossId);
     }
 
     public boolean isUserSSOUnique(Integer id, String sso) {

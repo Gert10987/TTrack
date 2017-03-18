@@ -1,6 +1,7 @@
 package com.gert.controllers;
 
 import com.gert.model.employer.Employer;
+import com.gert.model.user.User;
 import com.gert.model.user.UserProfile;
 import com.gert.service.employer.EmployerService;
 import com.gert.service.user.UserProfileService;
@@ -58,9 +59,14 @@ public class AppController {
     @RequestMapping(value = {"/", "/list"}, method = RequestMethod.GET)
     public String listUsers(ModelMap model) {
 
-        List<Employer> employers = employerService.findAllUsers();
+        String userName = getPrincipal();
+
+        List<Employer> employers =
+                employerService.findAllEmployersByBossId(getUserId(userName));
+
         model.addAttribute("employers", employers);
-        model.addAttribute("loggedInUser", getPrincipal());
+        model.addAttribute("loggedInUser", userName);
+
         return "employerList";
     }
 
@@ -71,9 +77,12 @@ public class AppController {
     public String newUser(ModelMap model) {
 
         Employer employer = new Employer();
+
         model.addAttribute("employer", employer);
         model.addAttribute("edit", false);
         model.addAttribute("loggedInUser", getPrincipal());
+        model.addAttribute("boss_id", getUserId(getPrincipal()));
+
         return "registration";
     }
 
@@ -86,20 +95,23 @@ public class AppController {
                            ModelMap model) {
 
         if (result.hasErrors()) {
+
             return "registration";
+
+        }else{
+
+            if (!employerService.isUserSSOUnique(employer.getId(), employer.getSsoId())) {
+                FieldError ssoError = new FieldError("user", "ssoId", messageSource.getMessage("non.unique.ssoId", new String[]{employer.getSsoId()}, Locale.getDefault()));
+                result.addError(ssoError);
+                return "registration";
+            }
+
+            employerService.saveUser(employer);
+
+            model.addAttribute("success", "Employer " + employer.getFirstName() + " " + employer.getLastName() + " registered successfully");
+            model.addAttribute("loggedInUser", getPrincipal());
+            return "registrationSuccess";
         }
-
-        if (!employerService.isUserSSOUnique(employer.getId(), employer.getSsoId())) {
-            FieldError ssoError = new FieldError("user", "ssoId", messageSource.getMessage("non.unique.ssoId", new String[]{employer.getSsoId()}, Locale.getDefault()));
-            result.addError(ssoError);
-            return "registration";
-        }
-
-        employerService.saveUser(employer);
-
-        model.addAttribute("success", "Employer " + employer.getFirstName() + " " + employer.getLastName() + " registered successfully");
-        model.addAttribute("loggedInUser", getPrincipal());
-        return "registrationSuccess";
     }
 
     /**
@@ -127,7 +139,7 @@ public class AppController {
             return "registration";
         }
 
-        employerService.updateUser(employer);
+        employerService.createNewEmployer(employer);
 
         model.addAttribute("success", "Employer " + employer.getFirstName() + " " + employer.getLastName() + " updated successfully");
         model.addAttribute("loggedInUser", getPrincipal());
@@ -204,6 +216,14 @@ public class AppController {
             userName = principal.toString();
         }
         return userName;
+    }
+
+    private int getUserId(String userName) {
+
+        User user = userService.findBySSO(getPrincipal());
+
+        return user.getId();
+
     }
 
     /**

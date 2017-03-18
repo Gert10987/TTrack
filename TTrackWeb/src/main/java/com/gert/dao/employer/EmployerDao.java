@@ -18,6 +18,6 @@ public interface EmployerDao {
 
     void deleteBySSO(String sso);
 
-    List<Employer> findAllUsers();
+    List<Employer> findAllEmployersByBossId(int bossId);
 
 }

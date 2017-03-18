@@ -3,9 +3,8 @@ package com.gert.model.employer;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by gert on 03.03.17.
@@ -41,6 +40,10 @@ public class Employer implements Serializable {
     @NotEmpty
     @Column(name = "PHONE", nullable = false)
     private String phone;
+
+    @NotNull
+    @Column(name = "BOSS_ID", nullable = false)
+    private Integer bossID;
 
     public Integer getId() {
         return id;
@@ -97,6 +100,14 @@ public class Employer implements Serializable {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public int getBossID() {
+        return bossID;
+    }
+
+    public void setBossID(Integer bossID) {
+        this.bossID = bossID;
+    }
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -134,6 +145,7 @@ public class Employer implements Serializable {
                 + ", firstName=" + firstName + ", lastName=" + lastName
                 + ", email=" + email + "]";
     }
+
 
 }
 

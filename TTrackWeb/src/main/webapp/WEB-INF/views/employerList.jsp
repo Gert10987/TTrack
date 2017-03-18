@@ -13,28 +13,28 @@
 </head>
 
 <body>
- <div id="mainWrapper">
+<div id="mainWrapper">
     <div class="generic-container">
         <%@include file="authHeader.jsp" %>
         <div class="panel panel-default">
-              <!-- Default panel contents -->
+            <!-- Default panel contents -->
             <div class="panel-heading"><span class="lead">List of Employers </span></div>
             <table class="table table-hover">
                 <thead>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>SSO ID</th>
-                        <th>Phone</th>
-                        <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
-                            <th width="100"></th>
-                        </sec:authorize>
-                        <sec:authorize access="hasRole('ADMIN')">
-                            <th width="100"></th>
-                        </sec:authorize>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>SSO ID</th>
+                    <th>Phone</th>
+                    <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
+                        <th width="100"></th>
+                    </sec:authorize>
+                    <sec:authorize access="hasRole('ADMIN')">
+                        <th width="100"></th>
+                    </sec:authorize>
 
-                    </tr>
+                </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${employers}" var="employer">
@@ -45,10 +45,12 @@
                         <td>${employer.ssoId}</td>
                         <td>${employer.phone}</td>
                         <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
-                            <td><a href="<c:url value='/edit-user-${employer.ssoId}' />" class="btn btn-success custom-width">edit</a></td>
+                            <td><a href="<c:url value='/edit-user-${employer.ssoId}' />"
+                                   class="btn btn-success custom-width">edit</a></td>
                         </sec:authorize>
                         <sec:authorize access="hasRole('ADMIN')">
-                            <td><a href="<c:url value='/delete-user-${employer.ssoId}' />" class="btn btn-danger custom-width">delete</a></td>
+                            <td><a href="<c:url value='/delete-user-${employer.ssoId}' />"
+                                   class="btn btn-danger custom-width">delete</a></td>
                         </sec:authorize>
                     </tr>
                 </c:forEach>
@@ -61,6 +63,6 @@
             </div>
         </sec:authorize>
     </div>
-   </div>
+</div>
 </body>
 </html>

@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import java.beans.Expression;
 import java.util.List;
 
 /**
@@ -23,9 +24,10 @@ public class EmployerDaoImpl extends AbstractDao<Integer, Employer> implements E
 
 
     @SuppressWarnings("unchecked")
-    public List<Employer> findAllUsers() {
+    public List<Employer> findAllEmployersByBossId(int bossId) {
 
         Criteria criteria = createEntityCriteria().addOrder(Order.asc("firstName"));
+        criteria.add(Restrictions.eq("bossID", bossId));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);//To avoid duplicates.
         List<Employer> employers = (List<Employer>) criteria.list();
 
