@@ -43,7 +43,9 @@ public class EmployerServiceImpl implements EmployerService {
         Employer entity = dao.findById(employer.getId());
 
         if(entity!=null){
+
             entity.setSsoId(employer.getSsoId());
+
             if(!employer.getPassword().equals(entity.getPassword())){
                 entity.setPassword(passwordEncoder.encode(employer.getPassword()));
             }
@@ -51,7 +53,6 @@ public class EmployerServiceImpl implements EmployerService {
             entity.setLastName(employer.getLastName());
             entity.setEmail(employer.getEmail());
             entity.setPhone(employer.getPhone());
-            entity.setBossID(employer.getBossID());
         }
     }
 

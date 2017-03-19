@@ -27,7 +27,6 @@ public class EmployerDaoImpl extends AbstractDao<Integer, Employer> implements E
     public List<Employer> findAllEmployersByBossId(int bossId) {
 
         Criteria criteria = createEntityCriteria().addOrder(Order.asc("firstName"));
-        criteria.add(Restrictions.eq("bossID", bossId));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);//To avoid duplicates.
         List<Employer> employers = (List<Employer>) criteria.list();
 

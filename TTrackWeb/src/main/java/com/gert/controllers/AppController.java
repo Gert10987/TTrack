@@ -81,7 +81,6 @@ public class AppController {
         model.addAttribute("employer", employer);
         model.addAttribute("edit", false);
         model.addAttribute("loggedInUser", getPrincipal());
-        model.addAttribute("boss_id", getUserId(getPrincipal()));
 
         return "registration";
     }

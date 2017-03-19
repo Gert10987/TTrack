@@ -1,5 +1,6 @@
 package com.gert.model.user;
 
+import com.gert.model.employer.Employer;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -16,7 +17,8 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "BOSS_ID")
+    public Integer id;
 
     @NotEmpty
     @Column(name = "SSO_ID", unique = true, nullable = false)
@@ -37,6 +39,9 @@ public class User implements Serializable {
     @NotEmpty
     @Column(name = "EMAIL", nullable = false)
     private String email;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Employer> employers;
 
     @NotEmpty
     @ManyToMany(fetch = FetchType.LAZY)
@@ -142,6 +147,14 @@ public class User implements Serializable {
         return "Employer [id=" + id + ", ssoId=" + ssoId
                 + ", firstName=" + firstName + ", lastName=" + lastName
                 + ", email=" + email + "]";
+    }
+
+    public Set<Employer> getEmployers() {
+        return employers;
+    }
+
+    public void setEmployers(Set<Employer> employers) {
+        this.employers = employers;
     }
 }
 

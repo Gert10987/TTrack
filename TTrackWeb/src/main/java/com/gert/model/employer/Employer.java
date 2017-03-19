@@ -1,7 +1,10 @@
 package com.gert.model.employer;
 
+import com.gert.model.user.User;
+import org.hibernate.annotations.Formula;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.jws.soap.SOAPBinding;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -41,9 +44,9 @@ public class Employer implements Serializable {
     @Column(name = "PHONE", nullable = false)
     private String phone;
 
-    @NotNull
-    @Column(name = "BOSS_ID", nullable = false)
-    private Integer bossID;
+    @ManyToOne
+    @JoinColumn(name="BOSS_ID", nullable = false)
+    private User user;
 
     public Integer getId() {
         return id;
@@ -101,13 +104,6 @@ public class Employer implements Serializable {
         this.phone = phone;
     }
 
-    public int getBossID() {
-        return bossID;
-    }
-
-    public void setBossID(Integer bossID) {
-        this.bossID = bossID;
-    }
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -147,5 +143,12 @@ public class Employer implements Serializable {
     }
 
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
 
