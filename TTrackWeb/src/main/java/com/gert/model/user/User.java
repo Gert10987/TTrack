@@ -40,7 +40,7 @@ public class User implements Serializable {
     @Column(name = "EMAIL", nullable = false)
     private String email;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     private Set<Employer> employers;
 
     @NotEmpty

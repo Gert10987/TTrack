@@ -105,6 +105,7 @@ public class AppController {
                 return "registration";
             }
 
+            employer.setUser(userService.findBySSO(getPrincipal()));
             employerService.saveUser(employer);
 
             model.addAttribute("success", "Employer " + employer.getFirstName() + " " + employer.getLastName() + " registered successfully");
