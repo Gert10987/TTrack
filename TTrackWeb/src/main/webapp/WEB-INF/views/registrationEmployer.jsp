@@ -17,7 +17,7 @@
     <div class="generic-container">
         <%@include file="authHeader.jsp" %>
 
-        <div class="well lead">User Registration Form</div>
+        <div class="well lead">Employer Registration Form</div>
         <form:form method="POST" modelAttribute="employer" class="form-horizontal">
             <form:input type="hidden" path="id" id="id"/>
 

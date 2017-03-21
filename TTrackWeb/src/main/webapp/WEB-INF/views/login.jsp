@@ -49,6 +49,13 @@
                         <input type="submit"
                                class="btn btn-block btn-primary btn-default" value="Log in">
                     </div>
+
+                    <div class="form-actions floatRight">
+                        <div class="Text">
+                            <a href="<c:url value='/newuser' />">Register</a>
+                        </div>
+                    </div>
+
                 </form>
             </div>
         </div>

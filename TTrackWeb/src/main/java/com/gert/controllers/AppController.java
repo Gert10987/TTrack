@@ -62,7 +62,7 @@ public class AppController {
         String userName = getPrincipal();
 
         List<Employer> employers =
-                employerService.findAllEmployersByBossId(userService.findBySSO(getPrincipal()));
+                employerService.findAllEmployersByBossId(userService.findBySSO(userName));
 
         model.addAttribute("employers", employers);
         model.addAttribute("loggedInUser", userName);
@@ -71,10 +71,10 @@ public class AppController {
     }
 
     /**
-     * This method will provide the medium to add a new user.
+     * This method will provide the medium to add a new employer.
      */
-    @RequestMapping(value = {"/newuser"}, method = RequestMethod.GET)
-    public String newUser(ModelMap model) {
+    @RequestMapping(value = {"/newemployer"}, method = RequestMethod.GET)
+    public String newEmployer(ModelMap model) {
 
         Employer employer = new Employer();
 
@@ -82,27 +82,64 @@ public class AppController {
         model.addAttribute("edit", false);
         model.addAttribute("loggedInUser", getPrincipal());
 
-        return "registration";
+        return "registrationEmployer";
+    }
+
+    /**
+     * This method will provide the medium to add a new user.
+     */
+    @RequestMapping(value = {"/newuser"}, method = RequestMethod.GET)
+    public String newUser(ModelMap model) {
+
+        User user = new User();
+
+        model.addAttribute("user", user);
+
+        return "registrationUser";
+    }
+
+    @RequestMapping(value = {"/newuser"}, method = RequestMethod.POST)
+    public String saveUser(@Valid User user, BindingResult result,
+                               ModelMap model) {
+
+        if (result.hasErrors()) {
+
+            return "registrationUser";
+
+        }else{
+
+            if (!userService.isUserSSOUnique(user.getId(), user.getSsoId())) {
+                FieldError ssoError = new FieldError("user", "ssoId", messageSource.getMessage("non.unique.ssoId", new String[]{user.getSsoId()}, Locale.getDefault()));
+                result.addError(ssoError);
+                return "registrationUser";
+            }
+
+            userService.saveUser(user);
+
+            model.addAttribute("success", "user " + user.getFirstName() + " " + user.getLastName() + " registered successfully");
+            model.addAttribute("loggedInUser", getPrincipal());
+            return "registrationSuccess";
+        }
     }
 
     /**
      * This method will be called on form submission, handling POST request for
      * saving user in database. It also validates the user input
      */
-    @RequestMapping(value = {"/newuser"}, method = RequestMethod.POST)
-    public String saveUser(@Valid Employer employer, BindingResult result,
-                           ModelMap model) {
+    @RequestMapping(value = {"/newemployer"}, method = RequestMethod.POST)
+    public String saveEmployer(@Valid Employer employer, BindingResult result,
+                               ModelMap model) {
 
         if (result.hasErrors()) {
 
-            return "registration";
+            return "registrationEmployer";
 
         }else{
 
             if (!employerService.isUserSSOUnique(employer.getId(), employer.getSsoId())) {
                 FieldError ssoError = new FieldError("user", "ssoId", messageSource.getMessage("non.unique.ssoId", new String[]{employer.getSsoId()}, Locale.getDefault()));
                 result.addError(ssoError);
-                return "registration";
+                return "registrationEmployer";
             }
 
             employer.setUser(userService.findBySSO(getPrincipal()));
@@ -117,8 +154,8 @@ public class AppController {
     /**
      * This method will provide the medium to update an existing user.
      */
-    @RequestMapping(value = {"/edit-user-{ssoId}"}, method = RequestMethod.GET)
-    public String editUser(@PathVariable String ssoId, ModelMap model) {
+    @RequestMapping(value = {"/edit-employer-{ssoId}"}, method = RequestMethod.GET)
+    public String editEmployer(@PathVariable String ssoId, ModelMap model) {
 
         Employer employer = employerService.findBySSO(ssoId);
         model.addAttribute("employer", employer);
@@ -131,9 +168,9 @@ public class AppController {
      * This method will be called on form submission, handling POST request for
      * updating user in database. It also validates the user input
      */
-    @RequestMapping(value = {"/edit-user-{ssoId}"}, method = RequestMethod.POST)
-    public String updateUser(@Valid Employer employer, BindingResult result,
-                             ModelMap model, @PathVariable String ssoId) {
+    @RequestMapping(value = {"/edit-employer-{ssoId}"}, method = RequestMethod.POST)
+    public String updateEmployer(@Valid Employer employer, BindingResult result,
+                                 ModelMap model, @PathVariable String ssoId) {
 
         if (result.hasErrors()) {
             return "registration";
@@ -150,8 +187,8 @@ public class AppController {
     /**
      * This method will delete an user by it's SSOID value.
      */
-    @RequestMapping(value = {"/delete-user-{ssoId}"}, method = RequestMethod.GET)
-    public String deleteUser(@PathVariable String ssoId) {
+    @RequestMapping(value = {"/delete-employer-{ssoId}"}, method = RequestMethod.GET)
+    public String deleteEmployer(@PathVariable String ssoId) {
 
         employerService.deleteUserBySSO(ssoId);
         return "redirect:/list";
@@ -181,6 +218,7 @@ public class AppController {
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage() {
+
         if (isCurrentAuthenticationAnonymous()) {
             return "login";
         } else {
