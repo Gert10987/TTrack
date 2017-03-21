@@ -2,7 +2,6 @@ package com.gert.dao.employer;
 
 import com.gert.dao.AbstractDao;
 import com.gert.model.employer.Employer;
-import com.gert.model.user.User;
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.criterion.Order;
@@ -11,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import java.beans.Expression;
 import java.util.List;
 
 /**
@@ -21,7 +19,6 @@ import java.util.List;
 public class EmployerDaoImpl extends AbstractDao<Integer, Employer> implements EmployerDao {
 
     static final Logger logger = LoggerFactory.getLogger(EmployerDaoImpl.class);
-
 
     @SuppressWarnings("unchecked")
     public List<Employer> findAllEmployersByBossId(int bossId) {
@@ -33,10 +30,18 @@ public class EmployerDaoImpl extends AbstractDao<Integer, Employer> implements E
         return employers;
     }
 
-
     public Employer findById(int id) {
 
-        return null;
+        logger.info("Employer ID : {}", id);
+        Criteria crit = createEntityCriteria();
+        crit.add(Restrictions.eq("id", id));
+        Employer employer = (Employer) crit.uniqueResult();
+
+        if(employer != null){
+
+            Hibernate.initialize(employer);
+        }
+        return employer;
     }
 
     public Employer findBySSO(String sso) {
@@ -58,6 +63,7 @@ public class EmployerDaoImpl extends AbstractDao<Integer, Employer> implements E
     }
 
     public void deleteBySSO(String sso) {
+
         Criteria crit = createEntityCriteria();
         crit.add(Restrictions.eq("ssoId", sso));
         Employer employer = (Employer) crit.uniqueResult();

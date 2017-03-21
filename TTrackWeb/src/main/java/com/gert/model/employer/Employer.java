@@ -1,12 +1,9 @@
 package com.gert.model.employer;
 
 import com.gert.model.user.User;
-import org.hibernate.annotations.Formula;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.jws.soap.SOAPBinding;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
