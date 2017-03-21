@@ -41,7 +41,7 @@ public class Employer implements Serializable {
     @Column(name = "PHONE", nullable = false)
     private String phone;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="BOSS_ID", nullable = false)
     private User user;
 

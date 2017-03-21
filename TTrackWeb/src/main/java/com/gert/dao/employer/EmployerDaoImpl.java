@@ -2,6 +2,7 @@ package com.gert.dao.employer;
 
 import com.gert.dao.AbstractDao;
 import com.gert.model.employer.Employer;
+import com.gert.model.user.User;
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.criterion.Order;
@@ -21,9 +22,10 @@ public class EmployerDaoImpl extends AbstractDao<Integer, Employer> implements E
     static final Logger logger = LoggerFactory.getLogger(EmployerDaoImpl.class);
 
     @SuppressWarnings("unchecked")
-    public List<Employer> findAllEmployersByBossId(int bossId) {
+    public List<Employer> findAllEmployersByBossId(User boss) {
 
         Criteria criteria = createEntityCriteria().addOrder(Order.asc("firstName"));
+        criteria.add(Restrictions.eq("user", boss));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);//To avoid duplicates.
         List<Employer> employers = (List<Employer>) criteria.list();
 

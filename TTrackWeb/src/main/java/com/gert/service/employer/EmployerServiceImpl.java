@@ -2,6 +2,7 @@ package com.gert.service.employer;
 
 import com.gert.dao.employer.EmployerDao;
 import com.gert.model.employer.Employer;
+import com.gert.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -60,9 +61,9 @@ public class EmployerServiceImpl implements EmployerService {
         dao.deleteBySSO(sso);
     }
 
-    public List<Employer> findAllEmployersByBossId(int bossId) {
+    public List<Employer> findAllEmployersByBossId(User boss) {
 
-        return dao.findAllEmployersByBossId(bossId);
+        return dao.findAllEmployersByBossId(boss);
     }
 
     public boolean isUserSSOUnique(Integer id, String sso) {

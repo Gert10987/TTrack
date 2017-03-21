@@ -20,7 +20,7 @@ public interface EmployerService {
 
     void deleteUserBySSO(String sso);
 
-    List<Employer> findAllEmployersByBossId(int bossId);
+    List<Employer> findAllEmployersByBossId(User boss);
 
     boolean isUserSSOUnique(Integer id, String sso);
 

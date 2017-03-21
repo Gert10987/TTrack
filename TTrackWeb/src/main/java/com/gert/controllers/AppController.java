@@ -62,7 +62,7 @@ public class AppController {
         String userName = getPrincipal();
 
         List<Employer> employers =
-                employerService.findAllEmployersByBossId(getUserId(userName));
+                employerService.findAllEmployersByBossId(userService.findBySSO(getPrincipal()));
 
         model.addAttribute("employers", employers);
         model.addAttribute("loggedInUser", userName);
