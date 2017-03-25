@@ -161,7 +161,7 @@ public class AppController {
         model.addAttribute("employer", employer);
         model.addAttribute("edit", true);
         model.addAttribute("loggedInUser", getPrincipal());
-        return "registration";
+        return "manageEmployer";
     }
 
     /**

@@ -45,11 +45,11 @@
                         <td>${employer.ssoId}</td>
                         <td>${employer.phone}</td>
                         <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
-                            <td><a href="<c:url value='/edit-user-${employer.ssoId}' />"
+                            <td><a href="<c:url value='/edit-employer-${employer.ssoId}' />"
                                    class="btn btn-success custom-width">edit</a></td>
                         </sec:authorize>
                         <sec:authorize access="hasRole('ADMIN')">
-                            <td><a href="<c:url value='/delete-user-${employer.ssoId}' />"
+                            <td><a href="<c:url value='/delete-employer-${employer.ssoId}' />"
                                    class="btn btn-danger custom-width">delete</a></td>
                         </sec:authorize>
                     </tr>

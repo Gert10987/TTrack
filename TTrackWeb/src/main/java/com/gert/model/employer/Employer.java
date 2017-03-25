@@ -101,6 +101,14 @@ public class Employer implements Serializable {
         this.phone = phone;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -137,15 +145,6 @@ public class Employer implements Serializable {
         return "Employer [id=" + id + ", ssoId=" + ssoId
                 + ", firstName=" + firstName + ", lastName=" + lastName
                 + ", email=" + email + "]";
-    }
-
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }
 

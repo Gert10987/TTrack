@@ -107,6 +107,14 @@ public class User implements Serializable {
         this.userProfiles = userProfiles;
     }
 
+    public Set<Employer> getEmployers() {
+        return employers;
+    }
+
+    public void setEmployers(Set<Employer> employers) {
+        this.employers = employers;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -147,14 +155,6 @@ public class User implements Serializable {
         return "Employer [id=" + id + ", ssoId=" + ssoId
                 + ", firstName=" + firstName + ", lastName=" + lastName
                 + ", email=" + email + "]";
-    }
-
-    public Set<Employer> getEmployers() {
-        return employers;
-    }
-
-    public void setEmployers(Set<Employer> employers) {
-        this.employers = employers;
     }
 }
 
