@@ -24,9 +24,11 @@
     <div class="manage-generic-container">
         <form:form method="POST" modelAttribute="employer" class="form-horizontal">
             <form:input type="hidden" path="id" id="id"/>
+
+            &nbsp;
             <div class="row">
                 <div class="form-group col-md-12">
-                    <label class="col-md-3 control-lable" for="firstName">First Name</label>
+                    <label class="col-md-3 control-lable" for="firstName">From:</label>
                     <div class="col-md-7">
                         <form:input type="text" path="firstName" id="firstName" class="form-control input-sm"/>
                         <div class="has-error">
@@ -38,7 +40,7 @@
 
             <div class="row">
                 <div class="form-group col-md-12">
-                    <label class="col-md-3 control-lable" for="lastName">Last Name</label>
+                    <label class="col-md-3 control-lable" for="lastName">To:</label>
                     <div class="col-md-7">
                         <form:input type="text" path="lastName" id="lastName" class="form-control input-sm"/>
                         <div class="has-error">
@@ -50,7 +52,7 @@
 
             <div class="row">
                 <div class="form-group col-md-12">
-                    <label class="col-md-3 control-lable" for="email">Email</label>
+                    <label class="col-md-3 control-lable" for="email">Email:</label>
                     <div class="col-md-7">
                         <form:input type="text" path="email" id="email" class="form-control input-sm"/>
                         <div class="has-error">
@@ -62,7 +64,7 @@
 
             <div class="row">
                 <div class="form-group col-md-12">
-                    <label class="col-md-3 control-lable" for="phone">Phone</label>
+                    <label class="col-md-3 control-lable" for="phone">Phone:</label>
                     <div class="col-md-7">
                         <form:input type="text" path="phone" id="phone" class="form-control input-sm"/>
                         <div class="has-error">
@@ -93,8 +95,21 @@
     </div>
 
     <div class="task-generic-container">
-    </div>
 
+        <div class="form-actions floatLeft">
+            <c:choose>
+                <c:when test="${edit}">
+                    <input type="submit" value="Previously" class="btn btn-primary btn-sm"/>
+                </c:when>
+            </c:choose>
+
+        <div class="form-actions floatRight">
+            <c:choose>
+                <c:when test="${edit}">
+                    <input type="submit" value="Next" class="btn btn-primary btn-sm"/>
+                </c:when>
+            </c:choose>
+        </div>
 </div>
 </body>
 </html>
