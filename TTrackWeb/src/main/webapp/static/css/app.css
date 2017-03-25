@@ -51,6 +51,76 @@ background-image: linear-gradient(to top, #deddc8 0%, #deddc8 8%, #2F2F2F 100%, 
 
 }
 
+.manage-generic-container {
+  display: inline-block;
+  position:fixed;
+  width:48%;
+  height: 34.3%;
+  left: 48%;
+  margin-left: 2%;
+  margin-top: 16%;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #deddc8;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 0 30px black;
+  background-color: 88cb73;
+
+}
+
+.task-generic-container {
+  display: inline-block;
+  position:fixed;
+  width:96%;
+  left: 0%;
+  height: 30%;
+  margin-left: 2%;
+  margin-top: 36%;
+  margin-bottom: 2%;
+  padding: 20px;
+  background-color: #deddc8;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 0 30px black;
+  background-color: 88cb73;
+
+}
+
+.photo-generic-container {
+  position:fixed;
+  width:48%;
+  height: 25%;
+  left: 48%;
+  margin-left: 2%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #deddc8;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 0 30px black;
+  background-color: 88cb73;
+}
+
+.map-generic-container {
+  display: inline-block;
+  position:fixed;
+  width:47%;
+  left: 0%;
+  margin-left: 2%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #deddc8;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 0 30px black;
+  background-color: 88cb73;
+}
+
+
+
 .custom-width {
     width: 80px !important;
 }
