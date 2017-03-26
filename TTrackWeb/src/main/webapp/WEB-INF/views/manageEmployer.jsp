@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<html xmlns:form="http://www.w3.org/1999/xhtml">
+<html xmlns:form="http://www.w3.org/1999/xhtml" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>User Registration Form</title>
@@ -17,7 +17,7 @@
     <div class="photo-generic-container">
         <div class="post-thumb"><img src="/static/test" width="130" height="150" align="right"/></div>
         <div class="post-content">
-            <h1 class="well" >${employer.firstName} ${employer.lastName}</h1>
+            <h1 class="well wellCustom">${employer.firstName} ${employer.lastName}</h1>
         </div>
     </div>
 
@@ -89,27 +89,51 @@
   }
 
 
+
             </script>
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2U93JXd0eI-qSD_dUCMa_MP4aSpJ1fAU&callback=myMap"></script>
         </div>
     </div>
 
-    <div class="task-generic-container">
+    <div class="taskDesc-generic-container">
 
         <div class="form-actions floatLeft">
             <c:choose>
                 <c:when test="${edit}">
-                    <input type="submit" value="Previously" class="btn btn-primary btn-sm"/>
-                </c:when>
-            </c:choose>
+                    <input type="submit" value="Previously" class="btn btn-primary btn-sm btnMargin" align="left"/>
 
-        <div class="form-actions floatRight">
-            <c:choose>
-                <c:when test="${edit}">
-                    <input type="submit" value="Next" class="btn btn-primary btn-sm"/>
+                        <h7 class="well well-sm">${employer.firstName} ${employer.lastName}</h7>
+
                 </c:when>
             </c:choose>
         </div>
-</div>
+
+    </div>
+
+    <div class="task-generic-container">
+
+
+        <div class="form-group" align="left">
+            <div class="row">
+
+            <h7 class="well well-sm">${employer.firstName} ${employer.lastName}</h7>
+            </div>
+
+            <div class="row">
+            &nbsp;
+            <h7 class="well well-sm">${employer.firstName} ${employer.lastName}</h7>
+            </div>
+
+            <div class="row">
+            &nbsp;
+            <h7 class="well well-sm">${employer.firstName} ${employer.lastName}</h7>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
 </body>
 </html>

@@ -69,13 +69,29 @@ background-image: linear-gradient(to top, #deddc8 0%, #deddc8 8%, #2F2F2F 100%, 
 
 }
 
-.task-generic-container {
-  display: inline-block;
+.taskDesc-generic-container {
   position:fixed;
-  width:96%;
+  width:50%;
   left: 0%;
   height: 30%;
   margin-left: 2%;
+  margin-top: 36%;
+  margin-bottom: 2%;
+  padding: 20px;
+  background-color: #deddc8;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 0 30px black;
+  background-color: 88cb73;
+
+}
+
+.task-generic-container {
+  position:fixed;
+  width:44%;
+  left: 54%;
+  height: 30%;
+  margin-right: 8%;
   margin-top: 36%;
   margin-bottom: 2%;
   padding: 20px;
@@ -157,3 +173,15 @@ body, #mainWrapper, .form-control{
 .authbar{
 	margin-bottom:15px;
 }
+
+.btnMargin{
+
+    margin-right: 15px;
+
+}
+
+.wellCustom{
+    display: inline-block;
+    width: 75%;
+}
+
