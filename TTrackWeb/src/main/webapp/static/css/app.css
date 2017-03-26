@@ -194,6 +194,8 @@ body, #mainWrapper, .form-control{
 
 .resizedGroup{
 
+    position: absolute;
+    display: inline-block;
     margin-top: 2%;
     margin-left: 10px;
     margin-right: 15px;
