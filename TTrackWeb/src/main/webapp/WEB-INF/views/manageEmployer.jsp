@@ -104,7 +104,7 @@
 
         <input type="text" class="well resizedGroup"/>
 
-        <input type="submit" value="Previously" class="btn btn-primary btn-sm" align="right"/>
+        <input type="submit" value="Next" class="btn btn-primary btn-sm" align="right"/>
 
 
     </div>

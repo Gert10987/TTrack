@@ -188,16 +188,16 @@ body, #mainWrapper, .form-control{
 .resizedTextbox{
 
     margin-top: 2%;
-    width: 40%;
+    width: 42%;
     height: 80%;
 }
 
 .resizedGroup{
 
     margin-top: 2%;
-    margin-left: 2%;
+    margin-left: 10px;
     margin-right: 15px;
-    width: 43%;
+    width: 44%;
     height: 80%;
 }
 
