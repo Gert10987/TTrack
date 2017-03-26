@@ -71,7 +71,7 @@ background-image: linear-gradient(to top, #deddc8 0%, #deddc8 8%, #2F2F2F 100%, 
 
 .taskDesc-generic-container {
   position:fixed;
-  width:50%;
+  width:96%;
   left: 0%;
   height: 30%;
   margin-left: 2%;
@@ -184,4 +184,33 @@ body, #mainWrapper, .form-control{
     display: inline-block;
     width: 75%;
 }
+
+.resizedTextbox{
+
+    margin-top: 2%;
+    width: 40%;
+    height: 80%;
+}
+
+.resizedGroup{
+
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 15px;
+    width: 43%;
+    height: 80%;
+}
+
+.customBtnPos{
+
+    margin-top: 100%;
+    padding: 4px;
+}
+
+.btnMarginRight{
+
+    margin-left: 0px;
+
+}
+
 

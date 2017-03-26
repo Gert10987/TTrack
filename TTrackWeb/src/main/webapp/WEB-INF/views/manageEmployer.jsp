@@ -90,6 +90,8 @@
 
 
 
+
+
             </script>
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2U93JXd0eI-qSD_dUCMa_MP4aSpJ1fAU&callback=myMap"></script>
         </div>
@@ -97,39 +99,12 @@
 
     <div class="taskDesc-generic-container">
 
-        <div class="form-actions floatLeft">
-            <c:choose>
-                <c:when test="${edit}">
-                    <input type="submit" value="Previously" class="btn btn-primary btn-sm btnMargin" align="left"/>
+        <input type="submit" value="Previously" class="btn btn-primary btn-sm btnMargin" align="left"/>
+        <input type="text" class="well resizedTextbox"/>
 
-                        <h7 class="well well-sm">${employer.firstName} ${employer.lastName}</h7>
+        <input type="text" class="well resizedGroup"/>
 
-                </c:when>
-            </c:choose>
-        </div>
-
-    </div>
-
-    <div class="task-generic-container">
-
-
-        <div class="form-group" align="left">
-            <div class="row">
-
-            <h7 class="well well-sm">${employer.firstName} ${employer.lastName}</h7>
-            </div>
-
-            <div class="row">
-            &nbsp;
-            <h7 class="well well-sm">${employer.firstName} ${employer.lastName}</h7>
-            </div>
-
-            <div class="row">
-            &nbsp;
-            <h7 class="well well-sm">${employer.firstName} ${employer.lastName}</h7>
-            </div>
-
-        </div>
+        <input type="submit" value="Previously" class="btn btn-primary btn-sm" align="right"/>
 
 
     </div>
