@@ -39,17 +39,17 @@
                 <tbody>
                 <c:forEach items="${employers}" var="employer">
                     <tr>
-                        <td>${employer.firstName}</td>
-                        <td>${employer.lastName}</td>
-                        <td>${employer.email}</td>
-                        <td>${employer.ssoId}</td>
-                        <td>${employer.phone}</td>
+                        <td>${employer.startDate}</td>
+                        <td>${employer.endDate}</td>
+                        <td>${employer.emailOfClient}</td>
+                        <td>${employer.name}</td>
+                        <td>${employer.phoneOfClient}</td>
                         <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
-                            <td><a href="<c:url value='/edit-employer-${employer.ssoId}' />"
+                            <td><a href="<c:url value='/edit-employer-${employer.name}' />"
                                    class="btn btn-success custom-width">edit</a></td>
                         </sec:authorize>
                         <sec:authorize access="hasRole('ADMIN')">
-                            <td><a href="<c:url value='/delete-employer-${employer.ssoId}' />"
+                            <td><a href="<c:url value='/delete-employer-${employer.name}' />"
                                    class="btn btn-danger custom-width">delete</a></td>
                         </sec:authorize>
                     </tr>

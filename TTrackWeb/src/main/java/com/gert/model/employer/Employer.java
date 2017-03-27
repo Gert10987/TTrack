@@ -1,10 +1,12 @@
 package com.gert.model.employer;
 
+import com.gert.model.task.Task;
 import com.gert.model.user.User;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * Created by gert on 03.03.17.
@@ -44,6 +46,9 @@ public class Employer implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="BOSS_ID", nullable = false)
     private User user;
+
+    @OneToMany
+    private Set<Task> tasks;
 
     public Integer getId() {
         return id;
