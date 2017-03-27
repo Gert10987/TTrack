@@ -45,7 +45,7 @@
                         <td>${employer.ssoId}</td>
                         <td>${employer.phone}</td>
                         <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
-                            <td><a href="<c:url value='/edit-employer-${employer.ssoId}' />"
+                            <td><a href="<c:url value='/manage-employer-${employer.ssoId}' />"
                                    class="btn btn-success custom-width">edit</a></td>
                         </sec:authorize>
                         <sec:authorize access="hasRole('ADMIN')">

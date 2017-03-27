@@ -21,4 +21,6 @@ public interface TaskDao {
 
     List<Task> findAllTaskByEmployerId(Employer employer);
 
+    Task findLastTaskForEmployer(String employerId);
+
 }

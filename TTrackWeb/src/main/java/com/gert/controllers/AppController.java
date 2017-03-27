@@ -151,18 +151,7 @@ public class AppController {
         }
     }
 
-    /**
-     * This method will provide the medium to update an existing user.
-     */
-    @RequestMapping(value = {"/edit-employer-{ssoId}"}, method = RequestMethod.GET)
-    public String editEmployer(@PathVariable String ssoId, ModelMap model) {
 
-        Employer employer = employerService.findBySSO(ssoId);
-        model.addAttribute("employer", employer);
-        model.addAttribute("edit", true);
-        model.addAttribute("loggedInUser", getPrincipal());
-        return "manageEmployer";
-    }
 
     /**
      * This method will be called on form submission, handling POST request for

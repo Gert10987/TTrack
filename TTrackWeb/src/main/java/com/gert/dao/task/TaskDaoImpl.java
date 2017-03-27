@@ -78,4 +78,8 @@ public class TaskDaoImpl extends AbstractDao<Integer, Task> implements TaskDao {
         return null;
     }
 
+    public Task findLastTaskForEmployer(String employerId) {
+        return null;
+    }
+
 }

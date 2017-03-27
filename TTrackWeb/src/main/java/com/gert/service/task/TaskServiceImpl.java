@@ -59,4 +59,10 @@ public class TaskServiceImpl implements TaskService {
 
         return dao.findAllTaskByEmployerId(employer);
     }
+
+    public Task findLastTaskForEmployer(String employerId) {
+
+        Task task = dao.findLastTaskForEmployer(employerId);
+        return task;
+    }
 }
