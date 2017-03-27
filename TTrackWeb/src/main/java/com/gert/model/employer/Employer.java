@@ -17,6 +17,7 @@ public class Employer implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "EMPLOYER_ID")
     private Integer id;
 
     @NotEmpty

@@ -17,7 +17,7 @@
     <div class="photo-generic-container">
         <div class="post-thumb"><img src="/static/test" width="130" height="150" align="right"/></div>
         <div class="post-content">
-            <h1 class="well wellCustom">${employer.startDate} ${employer.endDate}</h1>
+            <h1 class="well wellCustom">${employer.firstName} ${employer.lastName}</h1>
 
             <div class="form-actions floatCenter">
                 <input type="submit" value="Update" class="btn btn-primary btn-sm" align="right"/>
@@ -34,12 +34,12 @@
             &nbsp;
             <div class="row">
                 <div class="form-group col-md-12">
-                    <label class="col-md-3 control-lable" for="startDate">Start of Rout:</label>
+                    <label class="col-md-3 control-lable" for="firstName">From:</label>
                     <div class="col-md-7">
-                        <form:input type="text" path="startDate" id="startDate" class="form-control input-sm"/>
+                        <form:input type="text" path="firstName" id="firstName" class="form-control input-sm"/>
 
                         <div class="has-error">
-                            <form:errors path="startDate" class="help-inline"/>
+                            <form:errors path="firstName" class="help-inline"/>
                         </div>
                     </div>
                 </div>
@@ -47,22 +47,22 @@
 
             <div class="row">
                 <div class="form-group col-md-12">
-                    <label class="col-md-3 control-lable" for="endDate">End of Rout:</label>
+                    <label class="col-md-3 control-lable" for="lastName">To:</label>
                     <div class="col-md-7">
-                        <form:input type="text" path="endDate" id="endDate" class="form-control input-sm"/>
+                        <form:input type="text" path="lastName" id="lastName" class="form-control input-sm"/>
                         <div class="has-error">
-                            <form:errors path="endDate" class="help-inline"/>
+                            <form:errors path="lastName" class="help-inline"/>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-12">
-                    <label class="col-md-3 control-lable" for="emailOfClient">Client mail:</label>
+                    <label class="col-md-3 control-lable" for="email">Email:</label>
                     <div class="col-md-7">
-                        <form:input type="text" path="emailOfClient" id="emailOfClient" class="form-control input-sm"/>
+                        <form:input type="text" path="email" id="email" class="form-control input-sm"/>
                         <div class="has-error">
-                            <form:errors path="emailOfClient" class="help-inline"/>
+                            <form:errors path="email" class="help-inline"/>
                         </div>
                     </div>
                 </div>
@@ -70,11 +70,11 @@
 
             <div class="row">
                 <div class="form-group col-md-12">
-                    <label class="col-md-3 control-lable" for="phoneOfClient">Client phoneOfClient:</label>
+                    <label class="col-md-3 control-lable" for="phone">Phone:</label>
                     <div class="col-md-7">
-                        <form:input type="text" path="phoneOfClient" id="phoneOfClient" class="form-control input-sm"/>
+                        <form:input type="text" path="phone" id="phone" class="form-control input-sm"/>
                         <div class="has-error">
-                            <form:errors path="phoneOfClient" class="help-inline"/>
+                            <form:errors path="phone" class="help-inline"/>
                         </div>
                     </div>
                 </div>
@@ -114,12 +114,12 @@
                 &nbsp;
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class="col-md-3 control-lable" for="startDate">Name of Task:</label>
+                        <label class="col-md-3 control-lable" for="firstName">Name of Task:</label>
                         <div class="col-md-7">
-                            <form:input type="text" path="startDate" id="startDate" class="form-control input-sm"/>
+                            <form:input type="text" path="firstName" id="firstName" class="form-control input-sm"/>
 
                             <div class="has-error">
-                                <form:errors path="startDate" class="help-inline"/>
+                                <form:errors path="firstName" class="help-inline"/>
                             </div>
                         </div>
                     </div>
@@ -127,25 +127,25 @@
 
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class="col-md-3 control-lable" for="endDate">Start Date:</label>
+                        <label class="col-md-3 control-lable" for="lastName">Start Date:</label>
                         <input type="submit" value="Next" class="btn btn-primary btn-sm" align="right"/>
 
                         <div class="col-md-7">
-                            <form:input type="text" path="endDate" id="endDate" class="form-control input-sm"/>
+                            <form:input type="text" path="lastName" id="lastName" class="form-control input-sm"/>
 
                             <div class="has-error">
-                                <form:errors path="endDate" class="help-inline"/>
+                                <form:errors path="lastName" class="help-inline"/>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class="col-md-3 control-lable" for="emailOfClient">End Date:</label>
+                        <label class="col-md-3 control-lable" for="email">End Date:</label>
                         <div class="col-md-7">
-                            <form:input type="text" path="emailOfClient" id="emailOfClient" class="form-control input-sm"/>
+                            <form:input type="text" path="email" id="email" class="form-control input-sm"/>
                             <div class="has-error">
-                                <form:errors path="emailOfClient" class="help-inline"/>
+                                <form:errors path="email" class="help-inline"/>
                             </div>
                         </div>
                     </div>
