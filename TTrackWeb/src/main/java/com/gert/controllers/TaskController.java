@@ -31,16 +31,43 @@ public class TaskController {
     /**
      * This method will provide the medium to update an existing user.
      */
-    @RequestMapping(value = {"/manage-employer-{ssoId}"}, method = RequestMethod.GET)
-    public String editEmployer(@PathVariable String ssoId, ModelMap model) {
+    @RequestMapping(value = {"/manage-employer-{ssoId}-task-{task}"}, method = RequestMethod.GET)
+    public String editEmployer(@PathVariable String ssoId, @PathVariable String task, ModelMap model) {
 
         Employer employer = employerService.findBySSO(ssoId);
         List<Task> tasks = taskService.findAllTasksByEmployer(employer);
 
+        int currentTaskId = Integer.parseInt(task);
+        int lastTaskId = tasks.size() - 1;
+
         model.addAttribute("employer", employer);
-        model.addAttribute("task", tasks.get(0));
+        model.addAttribute("task", tasks.get(currentTaskId));
         model.addAttribute("edit", true);
+        model.addAttribute("nextTaskId", getNextId(lastTaskId, currentTaskId));
+        model.addAttribute("previouslyTaskId", getPrevId(currentTaskId));
 
         return "manageEmployer";
+    }
+
+    private int getNextId(int lastId, int currentId){
+
+        int res = currentId;
+
+        if(currentId >= lastId){
+
+            return res;
+        }
+        return ++res;
+    }
+
+    private int getPrevId(int currentId){
+
+        int res = currentId;
+
+        if(currentId <= 0){
+
+            return res;
+        }
+        return --res;
     }
 }

@@ -95,6 +95,7 @@
   }
 
 
+
             </script>
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2U93JXd0eI-qSD_dUCMa_MP4aSpJ1fAU&callback=myMap"></script>
         </div>
@@ -102,50 +103,51 @@
 
     <div class="taskDesc-generic-container">
 
-            <input type="submit" value="Previously" class="btn btn-primary btn-sm btnMargin" align="left"/>
-
-            <form:input type="text" path="description" id="description" class="well resizedTextbox"/>
+        <a href="<c:url value='/manage-employer-${employer.ssoId}-task-${previouslyTaskId}'/>"
+           class="btn btn-primary btn-sm btnMargin" align="left">Previously</a>
+        <form:input type="text" path="description" id="description" class="well resizedTextbox"/>
 
         <div class="resizedGroup" align="right">
-                &nbsp;
-                <div class="row">
-                    <div class="form-group col-md-12">
-                        <label class="col-md-3 control-lable" for="name">Name of Task:</label>
-                        <div class="col-md-7">
-                            <form:input type="text" path="name" id="name" class="form-control input-sm"/>
+            &nbsp;
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="col-md-3 control-lable" for="name">Name of Task:</label>
+                    <div class="col-md-7">
+                        <form:input type="text" path="name" id="name" class="form-control input-sm"/>
 
-                            <div class="has-error">
-                                <form:errors path="name" class="help-inline"/>
-                            </div>
+                        <div class="has-error">
+                            <form:errors path="name" class="help-inline"/>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="row">
-                    <div class="form-group col-md-12">
-                        <label class="col-md-3 control-lable" for="startDate">Start Date:</label>
-                        <input type="submit" value="Next" class="btn btn-primary btn-sm" align="right"/>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="col-md-3 control-lable" for="startDate">Start Date:</label>
+                    <a href="<c:url value='/manage-employer-${employer.ssoId}-task-${nextTaskId}'/>"
+                       class="btn btn-primary btn-sm btnMargin" align="left">Next</a>
 
-                        <div class="col-md-7">
-                            <form:input type="text" path="startDate" id="startDate" class="form-control input-sm"/>
+                    <div class="col-md-7">
+                        <form:input type="text" path="startDate" id="startDate" class="form-control input-sm"/>
 
-                            <div class="has-error">
-                                <form:errors path="startDate" class="help-inline"/>
-                            </div>
+                        <div class="has-error">
+                            <form:errors path="startDate" class="help-inline"/>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="form-group col-md-12">
-                        <label class="col-md-3 control-lable" for="endDate">End Date:</label>
-                        <div class="col-md-7">
-                            <form:input type="text" path="endDate" id="endDate" class="form-control input-sm"/>
-                            <div class="has-error">
-                                <form:errors path="endDate" class="help-inline"/>
-                            </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="col-md-3 control-lable" for="endDate">End Date:</label>
+                    <div class="col-md-7">
+                        <form:input type="text" path="endDate" id="endDate" class="form-control input-sm"/>
+                        <div class="has-error">
+                            <form:errors path="endDate" class="help-inline"/>
                         </div>
                     </div>
                 </div>
+            </div>
             </form:form>
         </div>
     </div>
