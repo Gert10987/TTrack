@@ -55,14 +55,8 @@ public class TaskServiceImpl implements TaskService {
         dao.deleteByName(name);
     }
 
-    public List<Task> findAllEmployersByBossId(Employer employer) {
+    public List<Task> findAllTasksByEmployer(Employer employer) {
 
-        return dao.findAllTaskByEmployerId(employer);
-    }
-
-    public Task findLastTaskForEmployer(String employerId) {
-
-        Task task = dao.findLastTaskForEmployer(employerId);
-        return task;
+        return dao.findAllTaskByEmployer(employer);
     }
 }

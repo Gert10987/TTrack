@@ -19,8 +19,5 @@ public interface TaskDao {
 
     void deleteByName(String sso);
 
-    List<Task> findAllTaskByEmployerId(Employer employer);
-
-    Task findLastTaskForEmployer(String employerId);
-
+    List<Task> findAllTaskByEmployer(Employer employer);
 }

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import java.util.List;
+
 /**
  * Created by gert on 27.03.17.
  */
@@ -30,13 +32,13 @@ public class TaskController {
      * This method will provide the medium to update an existing user.
      */
     @RequestMapping(value = {"/manage-employer-{ssoId}"}, method = RequestMethod.GET)
-    public String editEmployer(@PathVariable String employerId, ModelMap model) {
+    public String editEmployer(@PathVariable String ssoId, ModelMap model) {
 
-        Task task = taskService.findLastTaskForEmployer(employerId);
-        Employer employer = task.getEmployer();
+        Employer employer = employerService.findBySSO(ssoId);
+        List<Task> tasks = taskService.findAllTasksByEmployer(employer);
 
         model.addAttribute("employer", employer);
-        model.addAttribute("task", task);
+        model.addAttribute("task", tasks.get(0));
         model.addAttribute("edit", true);
 
         return "manageEmployer";

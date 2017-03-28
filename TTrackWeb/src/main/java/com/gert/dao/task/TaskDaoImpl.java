@@ -23,17 +23,6 @@ public class TaskDaoImpl extends AbstractDao<Integer, Task> implements TaskDao {
 
     static final Logger logger = LoggerFactory.getLogger(TaskDaoImpl.class);
 
-    @SuppressWarnings("unchecked")
-    public List<Employer> findAllEmployersByBossId(User boss) {
-
-        Criteria criteria = createEntityCriteria().addOrder(Order.asc("firstName"));
-        criteria.add(Restrictions.eq("user", boss));
-        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);//To avoid duplicates.
-        List<Employer> employers = (List<Employer>) criteria.list();
-
-        return employers;
-    }
-
     public Task findById(int id) {
 
         logger.info("Task ID : {}", id);
@@ -74,12 +63,14 @@ public class TaskDaoImpl extends AbstractDao<Integer, Task> implements TaskDao {
         delete(task);
     }
 
-    public List<Task> findAllTaskByEmployerId(Employer employer) {
-        return null;
-    }
+    public List<Task> findAllTaskByEmployer(Employer employer) {
 
-    public Task findLastTaskForEmployer(String employerId) {
-        return null;
+        Criteria criteria = createEntityCriteria().addOrder(Order.asc("startDate"));
+        criteria.add(Restrictions.eq("employer", employer));
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);//To avoid duplicates.
+        List<Task> tasks = (List<Task>) criteria.list();
+
+        return tasks;
     }
 
 }

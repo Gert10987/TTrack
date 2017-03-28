@@ -21,7 +21,5 @@ public interface TaskService {
 
     void deleteTaskByName(String name);
 
-    List<Task> findAllEmployersByBossId(Employer employer);
-
-    Task findLastTaskForEmployer(String employerId);
+    List<Task> findAllTasksByEmployer(Employer employer);
 }

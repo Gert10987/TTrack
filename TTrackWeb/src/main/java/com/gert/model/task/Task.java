@@ -16,6 +16,7 @@ public class Task implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "TASK_ID")
     private Integer id;
 
     @NotEmpty
@@ -28,11 +29,11 @@ public class Task implements Serializable {
 
     @NotEmpty
     @Column(name = "START_DATE", nullable = false)
-    private Timestamp startDate;
+    private String startDate;
 
     @NotEmpty
     @Column(name = "END_DATE", nullable = false)
-    private Timestamp endDate;
+    private String endDate;
 
     @NotEmpty
     @Column(name = "EMAIL_OF_CLIENT", nullable = false)
@@ -78,19 +79,19 @@ public class Task implements Serializable {
         this.description = description;
     }
 
-    public Timestamp getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Timestamp startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Timestamp getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Timestamp endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
