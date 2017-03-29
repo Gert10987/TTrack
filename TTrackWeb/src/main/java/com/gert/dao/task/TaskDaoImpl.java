@@ -65,7 +65,7 @@ public class TaskDaoImpl extends AbstractDao<Integer, Task> implements TaskDao {
 
     public List<Task> findAllTaskByEmployer(Employer employer) {
 
-        Criteria criteria = createEntityCriteria().addOrder(Order.asc("startDate"));
+        Criteria criteria = createEntityCriteria().addOrder(Order.asc("id"));
         criteria.add(Restrictions.eq("employer", employer));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);//To avoid duplicates.
         List<Task> tasks = (List<Task>) criteria.list();

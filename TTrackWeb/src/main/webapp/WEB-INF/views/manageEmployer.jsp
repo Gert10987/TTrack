@@ -2,8 +2,10 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<html xmlns:form="http://www.w3.org/1999/xhtml" xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<html xmlns:form="http://www.w3.org/1999/xhtml" xmlns:c="http://www.w3.org/1999/XSL/Transform"
+      xmlns:spring="http://jboss.org/xml/ns/javax/validation/mapping">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>User Registration Form</title>
@@ -23,6 +25,7 @@
                 <input type="submit" value="Update" class="btn btn-primary btn-sm" align="right"/>
                 <input type="submit" value="Add" class="btn btn-success btn-sm" align="right"/>
                 <input type="submit" value="Delete" class="btn btn-danger btn-sm" align="right"/>
+                <input type="submit" value="Show All" class="btn btn-warning btn-sm" align="right"/>
             </div>
         </div>
     </div>
@@ -83,21 +86,11 @@
     </div>
     <div class="map-manage-generic-container">
         <div class="map-generic-container">
+
             <div id="map" style="width:100%;height:434px;background:yellow"></div>
+            <script type="text/javascript" src="static/js/myMap.js"></script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=KEY&callback=myMap"></script>
 
-            <script>
-  function myMap() {
-    var mapCanvas = document.getElementById("map");
-    var mapOptions = {
-      center: new google.maps.LatLng(51.5, -0.2), zoom: 10
-    };
-    var map = new google.maps.Map(mapCanvas, mapOptions);
-  }
-
-
-
-            </script>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2U93JXd0eI-qSD_dUCMa_MP4aSpJ1fAU&callback=myMap"></script>
         </div>
     </div>
 
