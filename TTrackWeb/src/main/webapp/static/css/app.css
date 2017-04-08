@@ -55,7 +55,7 @@ background-image: linear-gradient(to top, #deddc8 0%, #deddc8 8%, #2F2F2F 100%, 
   display: inline-block;
   position:fixed;
   width:48%;
-  height: 34.3%;
+  height: 35%;
   left: 48%;
   margin-left: 2%;
   margin-top: 16%;
@@ -121,8 +121,9 @@ background-image: linear-gradient(to top, #deddc8 0%, #deddc8 8%, #2F2F2F 100%, 
 
 .map-generic-container {
   display: inline-block;
-  position:fixed;
+  position:absolute;
   width:47%;
+  height: 62.2%;
   left: 0%;
   margin-left: 2%;
   margin-top: 20px;

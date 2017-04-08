@@ -47,6 +47,14 @@ public class Task implements Serializable {
     private String startOfTheRout;
 
     @NotEmpty
+    @Column(name = "END_OF_ROUT_LOCATION", nullable = false)
+    private String endOfRoutLocation;
+
+    @NotEmpty
+    @Column(name = "START_OF_ROUT_LOCATION", nullable = false)
+    private String startOfRoutLocation;
+
+    @NotEmpty
     @Column(name = "END_OF_THE_ROUT", nullable = false)
     private String endOfTheRout;
 
@@ -118,6 +126,37 @@ public class Task implements Serializable {
         this.employer = employer;
     }
 
+    public String getStartOfTheRout() {
+        return startOfTheRout;
+    }
+
+    public void setStartOfTheRout(String startOfTheRout) {
+        this.startOfTheRout = startOfTheRout;
+    }
+
+    public String getEndOfTheRout() {
+        return endOfTheRout;
+    }
+
+    public void setEndOfTheRout(String endOfTheRout) {
+        this.endOfTheRout = endOfTheRout;
+    }
+
+    public String getEndOfRoutLocation() {
+        return endOfRoutLocation;
+    }
+
+    public void setEndOfRoutLocation(String endOfRoutLocation) {
+        this.endOfRoutLocation = endOfRoutLocation;
+    }
+
+    public String getStartOfRoutLocation() {
+        return startOfRoutLocation;
+    }
+
+    public void setStartOfRoutLocation(String startOfRoutLocation) {
+        this.startOfRoutLocation = startOfRoutLocation;
+    }
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -156,20 +195,6 @@ public class Task implements Serializable {
                 + ", emailOfClient=" + emailOfClient + "]";
     }
 
-    public String getStartOfTheRout() {
-        return startOfTheRout;
-    }
 
-    public void setStartOfTheRout(String startOfTheRout) {
-        this.startOfTheRout = startOfTheRout;
-    }
-
-    public String getEndOfTheRout() {
-        return endOfTheRout;
-    }
-
-    public void setEndOfTheRout(String endOfTheRout) {
-        this.endOfTheRout = endOfTheRout;
-    }
 }
 

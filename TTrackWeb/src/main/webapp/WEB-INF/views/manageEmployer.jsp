@@ -22,10 +22,15 @@
             <h1 class="well wellCustom">${employer.firstName} ${employer.lastName}</h1>
 
             <div class="form-actions floatCenter">
-                <input type="submit" value="Update" class="btn btn-primary btn-sm" align="right"/>
-                <input type="submit" value="Add" class="btn btn-success btn-sm" align="right"/>
-                <input type="submit" value="Delete" class="btn btn-danger btn-sm" align="right"/>
-                <input type="submit" value="Show All" class="btn btn-warning btn-sm" align="right"/>
+
+                <a href="<c:url value='/update-employer-${task.id}' />"
+                          class="btn btn-primary custom-width" align="right">Update</a>
+                <a href="<c:url value='/delete-employer-${task.id}' />"
+                          class="btn btn-success custom-width" align="right">Add</a>
+                <a href="<c:url value='/delete-employer-${task.id}' />"
+                          class="btn btn-danger custom-width" align="right">Delete</a>
+                <a href="<c:url value='/delete-employer-${task.id}' />"
+                          class="btn btn-warning custom-width" align="right">Show All</a>
             </div>
         </div>
     </div>
@@ -87,9 +92,10 @@
     <div class="map-manage-generic-container">
         <div class="map-generic-container">
 
-            <div id="map" style="width:100%;height:434px;background:yellow"></div>
+            <div id="map" style="width:100%; height: 100%;">
             <script type="text/javascript" src="static/js/myMap.js"></script>
-            <script src="https://maps.googleapis.com/maps/api/js?key=KEY&callback=myMap"></script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2U93JXd0eI-qSD_dUCMa_MP4aSpJ1fAU&callback=myMap"></script>
+            </div>
 
         </div>
     </div>

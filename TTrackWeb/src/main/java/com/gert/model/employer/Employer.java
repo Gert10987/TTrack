@@ -44,6 +44,9 @@ public class Employer implements Serializable {
     @Column(name = "PHONE", nullable = false)
     private String phone;
 
+    @Column(name = "IMAGE", nullable = false)
+    private byte image;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="BOSS_ID", nullable = false)
     private User user;
@@ -115,6 +118,22 @@ public class Employer implements Serializable {
         this.user = user;
     }
 
+    public Set<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(Set<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public byte getImage() {
+        return image;
+    }
+
+    public void setImage(byte image) {
+        this.image = image;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -153,12 +172,6 @@ public class Employer implements Serializable {
                 + ", email=" + email + "]";
     }
 
-    public Set<Task> getTasks() {
-        return tasks;
-    }
 
-    public void setTasks(Set<Task> tasks) {
-        this.tasks = tasks;
-    }
 }
 
