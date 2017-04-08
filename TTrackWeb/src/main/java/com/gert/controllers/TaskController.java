@@ -4,6 +4,7 @@ import com.gert.model.employer.Employer;
 import com.gert.model.task.Task;
 import com.gert.service.employer.EmployerService;
 import com.gert.service.task.TaskService;
+import com.gert.tools.TaskTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -41,33 +42,12 @@ public class TaskController {
         int lastTaskId = tasks.size() - 1;
 
         model.addAttribute("employer", employer);
-        model.addAttribute("task", tasks.get(currentTaskId));
+        model.addAttribute("currentTask", tasks.get(currentTaskId));
+        model.addAttribute("tasks", tasks);
         model.addAttribute("edit", true);
-        model.addAttribute("nextTaskId", getNextId(lastTaskId, currentTaskId));
-        model.addAttribute("previouslyTaskId", getPrevId(currentTaskId));
+        model.addAttribute("nextTaskId", TaskTools.getNextId(lastTaskId, currentTaskId));
+        model.addAttribute("previouslyTaskId", TaskTools.getPrevId(currentTaskId));
 
-        return "manageEmployer";
-    }
-
-    private int getNextId(int lastId, int currentId){
-
-        int res = currentId;
-
-        if(currentId >= lastId){
-
-            return res;
-        }
-        return ++res;
-    }
-
-    private int getPrevId(int currentId){
-
-        int res = currentId;
-
-        if(currentId <= 0){
-
-            return res;
-        }
-        return --res;
+        return "employer/manageEmployer";
     }
 }

@@ -67,7 +67,7 @@ public class AppController {
         model.addAttribute("employers", employers);
         model.addAttribute("loggedInUser", userName);
 
-        return "employerList";
+        return "employer/employerList";
     }
 
     /**
@@ -82,7 +82,7 @@ public class AppController {
         model.addAttribute("edit", false);
         model.addAttribute("loggedInUser", getPrincipal());
 
-        return "registrationEmployer";
+        return "common/registrationEmployer";
     }
 
     /**
@@ -95,7 +95,7 @@ public class AppController {
 
         model.addAttribute("user", user);
 
-        return "registrationUser";
+        return "common/registrationUser";
     }
 
     @RequestMapping(value = {"/newuser"}, method = RequestMethod.POST)
@@ -111,14 +111,14 @@ public class AppController {
             if (!userService.isUserSSOUnique(user.getId(), user.getSsoId())) {
                 FieldError ssoError = new FieldError("user", "ssoId", messageSource.getMessage("non.unique.ssoId", new String[]{user.getSsoId()}, Locale.getDefault()));
                 result.addError(ssoError);
-                return "registrationUser";
+                return "common/registrationUser";
             }
 
             userService.saveUser(user);
 
             model.addAttribute("success", "user " + user.getFirstName() + " " + user.getLastName() + " registered successfully");
             model.addAttribute("loggedInUser", getPrincipal());
-            return "registrationSuccess";
+            return "common/registrationSuccess";
         }
     }
 
@@ -132,14 +132,14 @@ public class AppController {
 
         if (result.hasErrors()) {
 
-            return "registrationEmployer";
+            return "common/registrationEmployer";
 
         }else{
 
             if (!employerService.isUserSSOUnique(employer.getId(), employer.getSsoId())) {
                 FieldError ssoError = new FieldError("user", "ssoId", messageSource.getMessage("non.unique.ssoId", new String[]{employer.getSsoId()}, Locale.getDefault()));
                 result.addError(ssoError);
-                return "registrationEmployer";
+                return "common/registrationEmployer";
             }
 
             employer.setUser(userService.findBySSO(getPrincipal()));
@@ -147,7 +147,7 @@ public class AppController {
 
             model.addAttribute("success", "Employer " + employer.getFirstName() + " " + employer.getLastName() + " registered successfully");
             model.addAttribute("loggedInUser", getPrincipal());
-            return "registrationSuccess";
+            return "common/registrationSuccess";
         }
     }
 
@@ -162,14 +162,14 @@ public class AppController {
                                  ModelMap model, @PathVariable String ssoId) {
 
         if (result.hasErrors()) {
-            return "registration";
+            return "common/registration";
         }
 
         employerService.createNewEmployer(employer);
 
         model.addAttribute("success", "Employer " + employer.getFirstName() + " " + employer.getLastName() + " updated successfully");
         model.addAttribute("loggedInUser", getPrincipal());
-        return "registrationSuccess";
+        return "common/registrationSuccess";
     }
 
 
@@ -198,7 +198,7 @@ public class AppController {
     @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
     public String accessDeniedPage(ModelMap model) {
         model.addAttribute("loggedInUser", getPrincipal());
-        return "accessDenied";
+        return "common/accessDenied";
     }
 
     /**
@@ -209,7 +209,7 @@ public class AppController {
     public String loginPage() {
 
         if (isCurrentAuthenticationAnonymous()) {
-            return "login";
+            return "common/login";
         } else {
             return "redirect:/list";
         }

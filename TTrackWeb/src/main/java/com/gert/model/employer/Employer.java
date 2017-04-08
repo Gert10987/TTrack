@@ -44,8 +44,8 @@ public class Employer implements Serializable {
     @Column(name = "PHONE", nullable = false)
     private String phone;
 
-    @Column(name = "IMAGE", nullable = false)
-    private byte image;
+    @Column(name = "IMAGE", nullable = true)
+    private Byte image;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="BOSS_ID", nullable = false)
@@ -126,11 +126,11 @@ public class Employer implements Serializable {
         this.tasks = tasks;
     }
 
-    public byte getImage() {
+    public Byte getImage() {
         return image;
     }
 
-    public void setImage(byte image) {
+    public void setImage(Byte image) {
         this.image = image;
     }
 
