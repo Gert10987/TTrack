@@ -1,12 +1,15 @@
 package com.gert.config;
 
+import com.gert.converter.EmployerConverter;
 import com.gert.converter.RoleToUserProfileConverter;
+import com.gert.model.employer.Employer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.format.Formatter;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
@@ -44,7 +47,9 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
+
         registry.addConverter(roleToUserProfileConverter);
+        registry.addConverter(employerConverter());
     }
 
     @Bean
@@ -57,5 +62,10 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     @Override
     public void configurePathMatch(PathMatchConfigurer matcher) {
         matcher.setUseRegisteredSuffixPatternMatch(true);
+    }
+
+    @Bean
+    public EmployerConverter employerConverter() {
+        return new EmployerConverter();
     }
 }

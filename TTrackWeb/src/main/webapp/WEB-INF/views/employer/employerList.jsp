@@ -15,7 +15,6 @@
 <body>
 <div id="mainWrapper">
     <div class="generic-container">
-        <%@include file="authHeader.jsp" %>
         <div class="panel panel-default">
             <!-- Default panel contents -->
             <div class="panel-heading"><span class="lead">List of Employers </span></div>
@@ -59,7 +58,7 @@
         </div>
         <sec:authorize access="hasRole('ADMIN')">
             <div class="well">
-                <a href="<c:url value='/newuser' />">Add New Employer</a>
+                <a href="<c:url value='/newemployer' />">Add New Employer</a>
             </div>
         </sec:authorize>
     </div>

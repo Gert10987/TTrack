@@ -29,7 +29,7 @@ public class TaskServiceImpl implements TaskService {
         return task;
     }
 
-    public void saveUser(Task task) {
+    public void saveTask(Task task) {
 
         dao.save(task);
     }

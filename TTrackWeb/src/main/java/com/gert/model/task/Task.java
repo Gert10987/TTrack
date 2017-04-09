@@ -46,11 +46,9 @@ public class Task implements Serializable {
     @Column(name = "START_OF_THE_ROUT", nullable = false)
     private String startOfTheRout;
 
-    @NotEmpty
     @Column(name = "END_OF_ROUT_LOCATION", nullable = false)
     private String endOfRoutLocation;
 
-    @NotEmpty
     @Column(name = "START_OF_ROUT_LOCATION", nullable = false)
     private String startOfRoutLocation;
 
@@ -58,7 +56,7 @@ public class Task implements Serializable {
     @Column(name = "END_OF_THE_ROUT", nullable = false)
     private String endOfTheRout;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="EMPLOYER_ID", nullable = false)
     private Employer employer;
 

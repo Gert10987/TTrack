@@ -15,7 +15,7 @@ public interface TaskService {
 
     Task findByName(String name);
 
-    void saveUser(Task task);
+    void saveTask(Task task);
 
     void createNewTask(Task task);
 

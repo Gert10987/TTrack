@@ -8,12 +8,16 @@ import com.gert.tools.TaskTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by gert on 27.03.17.
@@ -50,4 +54,21 @@ public class TaskController {
 
         return "employer/manageEmployer";
     }
+
+    @RequestMapping(value = {"/manage-employer-{ssoId}-task-{task}"}, method = RequestMethod.POST)
+    public String updateEmployer(@Valid Task currentTask, BindingResult result, ModelMap model) {
+
+        if (result.hasErrors()) {
+
+            return "common/registrationEmployer";
+
+        } else {
+
+            taskService.saveTask(currentTask);
+        }
+        model.addAttribute("success", "s");
+        model.addAttribute("loggedInUser", currentTask.getEmployer());
+        return "common/registrationSuccess";
+    }
+
 }
