@@ -23,7 +23,7 @@
 
     <form:form method="POST" modelAttribute="currentTask" class="form-horizontal">
         <form:input type="hidden" path="id" id="task_id"/>
-        <form:input type="hidden" path="employer" id="${employer.id}"/>
+        <form:input type="hidden" path="employer" value="${employer.id}"/>
         <form:input type="hidden" path="endOfRoutLocation" id="endOfRoutLocation"/>
         <form:input type="hidden" path="startOfRoutLocation" id="startOfRoutLocation"/>
 
@@ -35,11 +35,7 @@
                 <div class="form-actions floatCenter">
 
                     <input type="submit" value="Update" class="btn btn-primary custom-width"/>
-                    <a href="<c:url value='/delete-employer-${currentTask.id}' />"
-                       class="btn btn-success custom-width" align="right">Add</a>
-                    <a href="<c:url value='/delete-employer-${currentTask.id}' />"
-                       class="btn btn-danger custom-width" align="right">Delete</a>
-
+                    <input type="submit" value="Update" class="btn btn-primary custom-width"/>
 
                     <button type="button"
                             class="btn btn-warning custom-width"

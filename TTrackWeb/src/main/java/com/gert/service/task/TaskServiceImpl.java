@@ -34,6 +34,11 @@ public class TaskServiceImpl implements TaskService {
         dao.save(task);
     }
 
+    public void updateTask(Task task) {
+
+        dao.updateTask(task);
+    }
+
     public void createNewTask(Task task) {
 
         Task taskEntity = dao.findById(task.getId());

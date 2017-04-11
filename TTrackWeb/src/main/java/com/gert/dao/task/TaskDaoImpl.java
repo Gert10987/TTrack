@@ -55,6 +55,11 @@ public class TaskDaoImpl extends AbstractDao<Integer, Task> implements TaskDao {
         persist(task);
     }
 
+
+    public void updateTask(Task task) {
+        update(task);
+    }
+
     public void deleteByName(String name) {
 
         Criteria crit = createEntityCriteria();

@@ -56,7 +56,7 @@ public class Task implements Serializable {
     @Column(name = "END_OF_THE_ROUT", nullable = false)
     private String endOfTheRout;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name="EMPLOYER_ID", nullable = false)
     private Employer employer;
 

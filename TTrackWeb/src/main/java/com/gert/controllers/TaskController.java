@@ -64,11 +64,20 @@ public class TaskController {
 
         } else {
 
-            taskService.saveTask(currentTask);
+            taskService.updateTask(currentTask);
         }
-        model.addAttribute("success", "s");
-        model.addAttribute("loggedInUser", currentTask.getEmployer());
-        return "common/registrationSuccess";
+        return "redirect:/manage-employer-"
+                + currentTask.getEmployer().getSsoId()
+                + "-task-0";
     }
 
+    @RequestMapping(value = {"/delete-task-{taskId}"}, method = RequestMethod.POST)
+    public String deleteEmployer(@Valid Task currentTask, BindingResult result, ModelMap model) {
+
+        taskService.deleteTaskByName(currentTask.getName());
+
+        return "redirect:/manage-employer-"
+                + currentTask.getEmployer().getSsoId()
+                + "-task-0";
+    }
 }

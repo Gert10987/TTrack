@@ -17,6 +17,8 @@ public interface TaskDao {
 
     void save(Task task);
 
+    void updateTask(Task task);
+
     void deleteByName(String sso);
 
     List<Task> findAllTaskByEmployer(Employer employer);
