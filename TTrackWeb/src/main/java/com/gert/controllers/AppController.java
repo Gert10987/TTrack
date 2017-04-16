@@ -1,9 +1,11 @@
 package com.gert.controllers;
 
 import com.gert.model.employer.Employer;
+import com.gert.model.task.Task;
 import com.gert.model.user.User;
 import com.gert.model.user.UserProfile;
 import com.gert.service.employer.EmployerService;
+import com.gert.service.task.TaskService;
 import com.gert.service.user.UserProfileService;
 import com.gert.service.user.UserService;
 import org.apache.commons.lang3.StringUtils;
@@ -52,6 +54,9 @@ public class AppController {
     @Autowired
     AuthenticationTrustResolver authenticationTrustResolver;
 
+    @Autowired
+    TaskService taskService;
+
 
     /**
      * This method will list all existing users.
@@ -68,6 +73,16 @@ public class AppController {
         model.addAttribute("loggedInUser", userName);
 
         return "employer/employerList";
+    }
+
+    @RequestMapping(value = {"/tasks-{ssoId}"}, method = RequestMethod.GET)
+    @ResponseBody
+    public List<Task> listOfTasks(@PathVariable String ssoId) {
+
+        Employer currentEmployer = employerService.findBySSO(ssoId);
+        List<Task> tasks = taskService.findAllTasksByEmployer(currentEmployer);
+
+        return tasks;
     }
 
     /**

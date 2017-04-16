@@ -1,5 +1,6 @@
 package com.gert.model.task;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gert.model.employer.Employer;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -56,6 +57,7 @@ public class Task implements Serializable {
     @Column(name = "END_OF_THE_ROUT", nullable = false)
     private String endOfTheRout;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name="EMPLOYER_ID", nullable = false)
     private Employer employer;

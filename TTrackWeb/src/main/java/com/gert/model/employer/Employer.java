@@ -1,5 +1,6 @@
 package com.gert.model.employer;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gert.model.task.Task;
 import com.gert.model.user.User;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -47,10 +48,12 @@ public class Employer implements Serializable {
     @Column(name = "IMAGE", nullable = true)
     private Byte image;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="BOSS_ID", nullable = false)
     private User user;
 
+    @JsonIgnore
     @OneToMany
     private Set<Task> tasks;
 

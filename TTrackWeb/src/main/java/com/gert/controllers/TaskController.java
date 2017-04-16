@@ -23,7 +23,7 @@ import java.util.Locale;
  * Created by gert on 27.03.17.
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/manage-employer")
 @SessionAttributes("roles")
 public class TaskController {
 
