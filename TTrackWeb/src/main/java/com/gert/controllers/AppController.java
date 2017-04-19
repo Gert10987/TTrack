@@ -8,6 +8,7 @@ import com.gert.service.employer.EmployerService;
 import com.gert.service.task.TaskService;
 import com.gert.service.user.UserProfileService;
 import com.gert.service.user.UserService;
+import com.gert.tools.TaskTools;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -73,6 +74,25 @@ public class AppController {
         model.addAttribute("loggedInUser", userName);
 
         return "employer/employerList";
+    }
+
+    @RequestMapping(value = {"/manage-employer-{ssoId}-task-{task}"}, method = RequestMethod.GET)
+    public String editEmployer(@PathVariable String ssoId, @PathVariable String task, ModelMap model) {
+
+        Employer employer = employerService.findBySSO(ssoId);
+        List<Task> tasks = taskService.findAllTasksByEmployer(employer);
+
+        int currentTaskId = Integer.parseInt(task);
+        int lastTaskId = tasks.size() - 1;
+
+        model.addAttribute("employer", employer);
+        model.addAttribute("currentTask", tasks.get(currentTaskId));
+        model.addAttribute("tasks", tasks);
+        model.addAttribute("edit", true);
+        model.addAttribute("nextTaskId", TaskTools.getNextId(lastTaskId, currentTaskId));
+        model.addAttribute("previouslyTaskId", TaskTools.getPrevId(currentTaskId));
+
+        return "employer/manageEmployer";
     }
 
     @RequestMapping(value = {"/tasks-{ssoId}"}, method = RequestMethod.GET)

@@ -36,24 +36,7 @@ public class TaskController {
     /**
      * This method will provide the medium to update an existing user.
      */
-    @RequestMapping(value = {"/manage-employer-{ssoId}-task-{task}"}, method = RequestMethod.GET)
-    public String editEmployer(@PathVariable String ssoId, @PathVariable String task, ModelMap model) {
 
-        Employer employer = employerService.findBySSO(ssoId);
-        List<Task> tasks = taskService.findAllTasksByEmployer(employer);
-
-        int currentTaskId = Integer.parseInt(task);
-        int lastTaskId = tasks.size() - 1;
-
-        model.addAttribute("employer", employer);
-        model.addAttribute("currentTask", tasks.get(currentTaskId));
-        model.addAttribute("tasks", tasks);
-        model.addAttribute("edit", true);
-        model.addAttribute("nextTaskId", TaskTools.getNextId(lastTaskId, currentTaskId));
-        model.addAttribute("previouslyTaskId", TaskTools.getPrevId(currentTaskId));
-
-        return "employer/manageEmployer";
-    }
 
     @RequestMapping(value = {"/manage-employer-{ssoId}-task-{task}"}, method = RequestMethod.POST)
     public String updateEmployer(@Valid Task currentTask, BindingResult result, ModelMap model) {

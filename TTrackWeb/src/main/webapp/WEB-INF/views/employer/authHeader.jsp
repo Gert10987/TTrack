@@ -1,3 +1,11 @@
-<div class="authbar">
-    <span>Welcome <strong>${loggedInUser}</strong>.</span> <span class="floatRight"><a href="<c:url value="/logout" />">Logout</a></span>
-</div>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Welcome ${loggedInUser}</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="<c:url value="/list" />">Home</a></li>
+            <li><a href="<c:url value="/logout" />">Logout</a></li>
+        </ul>
+    </div>
+</nav>

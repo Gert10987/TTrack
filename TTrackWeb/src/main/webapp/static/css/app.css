@@ -40,7 +40,6 @@ background-image: linear-gradient(to top, #deddc8 0%, #deddc8 8%, #2F2F2F 100%, 
   width:80%;
   left: 10%;
   margin-left: 20px;
-  margin-top: 20px;
   margin-bottom: 20px;
   padding: 20px;
   background-color: #deddc8;
@@ -109,7 +108,6 @@ background-image: linear-gradient(to top, #deddc8 0%, #deddc8 8%, #2F2F2F 100%, 
   height: 25%;
   left: 48%;
   margin-left: 2%;
-  margin-top: 20px;
   margin-bottom: 20px;
   padding: 20px;
   background-color: #deddc8;
@@ -126,9 +124,7 @@ background-image: linear-gradient(to top, #deddc8 0%, #deddc8 8%, #2F2F2F 100%, 
   height: 62.2%;
   left: 0%;
   margin-left: 2%;
-  margin-top: 20px;
   margin-bottom: 20px;
-  padding: 20px;
   background-color: #deddc8;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -215,5 +211,4 @@ body, #mainWrapper, .form-control{
     margin-left: 0px;
 
 }
-
 

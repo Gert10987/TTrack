@@ -11,16 +11,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>User Registration Form</title>
     <link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
     <link href="<c:url value='/static/css/app.css' />" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="static/js/showModal.js"></script>
 </head>
 
 <body>
 <div id="mainWrapper">
-
+    <%@include file="authHeader.jsp" %>
     <form:form method="POST" modelAttribute="currentTask" class="form-horizontal">
         <form:input type="hidden" path="id" id="task_id"/>
         <form:input type="hidden" path="employer" value="${employer.id}"/>
@@ -35,22 +38,17 @@
                 <div class="form-actions floatCenter">
 
                     <input type="submit" value="Update" class="btn btn-primary custom-width"/>
-                    <input type="submit" value="Update" class="btn btn-primary custom-width"/>
 
-                    <button type="button"
-                            class="btn btn-warning custom-width"
-                            data-toggle="modal"
-                            data-target="#allTasksModal">Show All
+                    <button type="button" data-id="${employer.ssoId}"
+                            class="btn btn-warning custom-width showAll">ShowAll
                     </button>
+
                 </div>
             </div>
         </div>
 
 
         <div class="manage-generic-container">
-
-
-            &nbsp;
             <div class="row">
                 <div class="form-group col-md-12">
                     <label class="col-md-3 control-lable" for="startOfTheRout">From:</label>
@@ -160,46 +158,30 @@
                 </div>
 </div>
 </div>
-    </form:form>
+</form:form>
 
-
-    <!-- ShowAllTasks Modal -->
-<div class="modal fade" id="allTasksModal" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th width="100"></th>
-                    <th width="100"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${tasks}" var="tasks">
-                    <tr>
-                        <td>${tasks.id}</td>
-                        <td>${tasks.name}</td>
-                        <td>${tasks.description}</td>
-                        <td><a href="<c:url value='/manage-employer-${employer.ssoId}-task-0' />"
-                               class="btn btn-success custom-width">Choice</a></td>
-                        <td><a href="<c:url value='/delete-employer-${employer.ssoId}' />"
-                               class="btn btn-danger custom-width">Delete</a></td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-            <div class="modal">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <div class="modal fade" id="allTasksModal" tabindex="-1" role="dialog" aria-hidden="true" >
+        <div class="modal-dialog modal-lg" style="display:table;">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <table id="tableTasks" class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th data-field="id" id="taskID">ID</th>
+                            <th data-field="name">Name</th>
+                            <th data-field="description">Description</th>
+                            <th data-formatter="editButtonFormatter"></th>
+                            <th data-formatter="deleteButtonFormatter"></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
-</div>
-
-
-
 </body>
 </html>
