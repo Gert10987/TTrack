@@ -2,9 +2,7 @@ var employerID = null;
 
 $(document).ready(function() {
     $('.showAll').on('click', function() {
-        // Get the record's ID via attribute
         employerID = $(this).attr('data-id');
-        var list = null;
 
         $.ajax({
             type: "GET",
@@ -13,13 +11,11 @@ $(document).ready(function() {
             contentType : 'application/json',
             success: function (tasks) {
 
-
              $('#tableTasks').bootstrapTable({
                 data: tasks
              });
 
              $('#allTasksModal').modal('show');
-
             }
         });
     });

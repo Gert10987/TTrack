@@ -76,34 +76,6 @@ public class AppController {
         return "employer/employerList";
     }
 
-    @RequestMapping(value = {"/manage-employer-{ssoId}-task-{task}"}, method = RequestMethod.GET)
-    public String editEmployer(@PathVariable String ssoId, @PathVariable String task, ModelMap model) {
-
-        Employer employer = employerService.findBySSO(ssoId);
-        List<Task> tasks = taskService.findAllTasksByEmployer(employer);
-
-        int currentTaskId = Integer.parseInt(task);
-        int lastTaskId = tasks.size() - 1;
-
-        model.addAttribute("employer", employer);
-        model.addAttribute("currentTask", tasks.get(currentTaskId));
-        model.addAttribute("tasks", tasks);
-        model.addAttribute("edit", true);
-        model.addAttribute("nextTaskId", TaskTools.getNextId(lastTaskId, currentTaskId));
-        model.addAttribute("previouslyTaskId", TaskTools.getPrevId(currentTaskId));
-
-        return "employer/manageEmployer";
-    }
-
-    @RequestMapping(value = {"/tasks-{ssoId}"}, method = RequestMethod.GET)
-    @ResponseBody
-    public List<Task> listOfTasks(@PathVariable String ssoId) {
-
-        Employer currentEmployer = employerService.findBySSO(ssoId);
-        List<Task> tasks = taskService.findAllTasksByEmployer(currentEmployer);
-
-        return tasks;
-    }
 
     /**
      * This method will provide the medium to add a new employer.
@@ -185,8 +157,6 @@ public class AppController {
             return "common/registrationSuccess";
         }
     }
-
-
 
     /**
      * This method will be called on form submission, handling POST request for
@@ -281,12 +251,59 @@ public class AppController {
         return userName;
     }
 
-    private int getUserId(String userName) {
+    @RequestMapping(value = {"/manage-employer-{ssoId}-task-{task}"}, method = RequestMethod.GET)
+    public String editEmployer(@PathVariable String ssoId, @PathVariable String task, ModelMap model) {
 
-        User user = userService.findBySSO(getPrincipal());
+        Employer employer = employerService.findBySSO(ssoId);
+        List<Task> tasks = taskService.findAllTasksByEmployer(employer);
 
-        return user.getId();
+        int currentTaskId = Integer.parseInt(task);
+        int lastTaskId = tasks.size() - 1;
 
+        model.addAttribute("employer", employer);
+        model.addAttribute("currentTask", tasks.get(currentTaskId));
+        model.addAttribute("tasks", tasks);
+        model.addAttribute("edit", true);
+        model.addAttribute("nextTaskId", TaskTools.getNextId(lastTaskId, currentTaskId));
+        model.addAttribute("previouslyTaskId", TaskTools.getPrevId(currentTaskId));
+
+        return "employer/manageEmployer";
+    }
+
+    @RequestMapping(value = {"/tasks-{ssoId}"}, method = RequestMethod.GET)
+    @ResponseBody
+    public List<Task> listOfTasks(@PathVariable String ssoId) {
+
+        Employer currentEmployer = employerService.findBySSO(ssoId);
+        List<Task> tasks = taskService.findAllTasksByEmployer(currentEmployer);
+
+        return tasks;
+    }
+
+    @RequestMapping(value = {"/manage-employer-{ssoId}-task-{task}"}, method = RequestMethod.POST)
+    public String updateEmployer(@Valid Task currentTask, BindingResult result, ModelMap model) {
+
+        if (result.hasErrors()) {
+
+            return "common/registrationEmployer";
+
+        } else {
+
+            taskService.updateTask(currentTask);
+        }
+        return "redirect:/manage-employer-"
+                + currentTask.getEmployer().getSsoId()
+                + "-task-0";
+    }
+
+    @RequestMapping(value = {"/delete-task-{taskId}"}, method = RequestMethod.POST)
+    public String deleteEmployer(@Valid Task currentTask, BindingResult result, ModelMap model) {
+
+        taskService.deleteTaskByName(currentTask.getName());
+
+        return "redirect:/manage-employer-"
+                + currentTask.getEmployer().getSsoId()
+                + "-task-0";
     }
 
     /**

@@ -38,29 +38,5 @@ public class TaskController {
      */
 
 
-    @RequestMapping(value = {"/manage-employer-{ssoId}-task-{task}"}, method = RequestMethod.POST)
-    public String updateEmployer(@Valid Task currentTask, BindingResult result, ModelMap model) {
 
-        if (result.hasErrors()) {
-
-            return "common/registrationEmployer";
-
-        } else {
-
-            taskService.updateTask(currentTask);
-        }
-        return "redirect:/manage-employer-"
-                + currentTask.getEmployer().getSsoId()
-                + "-task-0";
-    }
-
-    @RequestMapping(value = {"/delete-task-{taskId}"}, method = RequestMethod.POST)
-    public String deleteEmployer(@Valid Task currentTask, BindingResult result, ModelMap model) {
-
-        taskService.deleteTaskByName(currentTask.getName());
-
-        return "redirect:/manage-employer-"
-                + currentTask.getEmployer().getSsoId()
-                + "-task-0";
-    }
 }
