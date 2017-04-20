@@ -103,7 +103,7 @@
 
                 <div id="map" style="width:100%; height: 100%;">
                     <script type="text/javascript" src="static/js/myMap.js"></script>
-                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2U93JXd0eI-qSD_dUCMa_MP4aSpJ1fAU&callback=myMap"></script>
+                    <script src="https://maps.googleapis.com/maps/api/js?key=KEY&callback=myMap"></script>
                 </div>
 
             </div>
