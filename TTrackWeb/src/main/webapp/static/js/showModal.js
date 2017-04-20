@@ -6,7 +6,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "GET",
-            url: 'http://localhost:8080/tasks-' + employerID,
+            url: 'http://localhost:8080/manage-employer/tasks-' + employerID,
             dataType : 'json',
             contentType : 'application/json',
             success: function (tasks) {

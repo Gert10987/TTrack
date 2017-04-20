@@ -1,14 +1,12 @@
 package com.gert.controllers;
 
 import com.gert.model.employer.Employer;
-import com.gert.model.task.Task;
 import com.gert.model.user.User;
 import com.gert.model.user.UserProfile;
 import com.gert.service.employer.EmployerService;
 import com.gert.service.task.TaskService;
 import com.gert.service.user.UserProfileService;
 import com.gert.service.user.UserService;
-import com.gert.tools.TaskTools;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -54,10 +52,6 @@ public class AppController {
 
     @Autowired
     AuthenticationTrustResolver authenticationTrustResolver;
-
-    @Autowired
-    TaskService taskService;
-
 
     /**
      * This method will list all existing users.
@@ -249,61 +243,6 @@ public class AppController {
             userName = principal.toString();
         }
         return userName;
-    }
-
-    @RequestMapping(value = {"/manage-employer-{ssoId}-task-{task}"}, method = RequestMethod.GET)
-    public String editEmployer(@PathVariable String ssoId, @PathVariable String task, ModelMap model) {
-
-        Employer employer = employerService.findBySSO(ssoId);
-        List<Task> tasks = taskService.findAllTasksByEmployer(employer);
-
-        int currentTaskId = Integer.parseInt(task);
-        int lastTaskId = tasks.size() - 1;
-
-        model.addAttribute("employer", employer);
-        model.addAttribute("currentTask", tasks.get(currentTaskId));
-        model.addAttribute("tasks", tasks);
-        model.addAttribute("edit", true);
-        model.addAttribute("nextTaskId", TaskTools.getNextId(lastTaskId, currentTaskId));
-        model.addAttribute("previouslyTaskId", TaskTools.getPrevId(currentTaskId));
-
-        return "employer/manageEmployer";
-    }
-
-    @RequestMapping(value = {"/tasks-{ssoId}"}, method = RequestMethod.GET)
-    @ResponseBody
-    public List<Task> listOfTasks(@PathVariable String ssoId) {
-
-        Employer currentEmployer = employerService.findBySSO(ssoId);
-        List<Task> tasks = taskService.findAllTasksByEmployer(currentEmployer);
-
-        return tasks;
-    }
-
-    @RequestMapping(value = {"/manage-employer-{ssoId}-task-{task}"}, method = RequestMethod.POST)
-    public String updateEmployer(@Valid Task currentTask, BindingResult result, ModelMap model) {
-
-        if (result.hasErrors()) {
-
-            return "common/registrationEmployer";
-
-        } else {
-
-            taskService.updateTask(currentTask);
-        }
-        return "redirect:/manage-employer-"
-                + currentTask.getEmployer().getSsoId()
-                + "-task-0";
-    }
-
-    @RequestMapping(value = {"/delete-task-{taskId}"}, method = RequestMethod.POST)
-    public String deleteEmployer(@Valid Task currentTask, BindingResult result, ModelMap model) {
-
-        taskService.deleteTaskByName(currentTask.getName());
-
-        return "redirect:/manage-employer-"
-                + currentTask.getEmployer().getSsoId()
-                + "-task-0";
     }
 
     /**
