@@ -14,6 +14,7 @@
 
 <body>
 <div id="mainWrapper">
+    <%@include file="authHeader.jsp" %>
     <div class="generic-container">
         <div class="well lead">Employer Registration Form</div>
         <form:form method="POST" modelAttribute="employer" class="form-horizontal">

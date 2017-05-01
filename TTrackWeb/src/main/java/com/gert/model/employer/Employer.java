@@ -3,6 +3,7 @@ package com.gert.model.employer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gert.model.task.Task;
 import com.gert.model.user.User;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -45,8 +46,10 @@ public class Employer implements Serializable {
     @Column(name = "PHONE", nullable = false)
     private String phone;
 
-    @Column(name = "IMAGE", nullable = true)
-    private Byte image;
+    @Lob
+    @Column(name= "IMAGE")
+    @Type(type="org.hibernate.type.BinaryType")
+    private byte[] image;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
@@ -129,11 +132,11 @@ public class Employer implements Serializable {
         this.tasks = tasks;
     }
 
-    public Byte getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(Byte image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 

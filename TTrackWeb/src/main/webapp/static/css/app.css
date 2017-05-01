@@ -69,12 +69,13 @@ background-image: linear-gradient(to top, #deddc8 0%, #deddc8 8%, #2F2F2F 100%, 
 }
 
 .taskDesc-generic-container {
-  position:fixed;
+  display: inline-block;
+  position:absolute;
   width:96%;
   left: 0%;
   height: 30%;
   margin-left: 2%;
-  margin-top: 36%;
+  margin-top: 34.5%;
   margin-bottom: 2%;
   padding: 20px;
   background-color: #deddc8;
@@ -91,24 +92,20 @@ background-image: linear-gradient(to top, #deddc8 0%, #deddc8 8%, #2F2F2F 100%, 
   left: 54%;
   height: 30%;
   margin-right: 8%;
-  margin-top: 36%;
-  margin-bottom: 2%;
-  padding: 20px;
   background-color: #deddc8;
   border: 1px solid #ddd;
-  border-radius: 4px;
   box-shadow: 0 0 30px black;
   background-color: 88cb73;
 
 }
 
 .photo-generic-container {
-  position:fixed;
+  display: inline-block;
+  position:absolute;
   width:48%;
-  height: 25%;
+  height: 62.2%;
   left: 48%;
   margin-left: 2%;
-  margin-bottom: 20px;
   padding: 20px;
   background-color: #deddc8;
   border: 1px solid #ddd;
@@ -209,6 +206,12 @@ body, #mainWrapper, .form-control{
 .btnMarginRight{
 
     margin-left: 0px;
+
+}
+
+.marginTop{
+
+    margin-Top: 50px;
 
 }
 

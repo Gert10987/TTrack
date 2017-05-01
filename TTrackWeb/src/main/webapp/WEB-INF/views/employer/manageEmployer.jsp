@@ -24,6 +24,7 @@
 <body>
 <div id="mainWrapper">
     <%@include file="authHeader.jsp" %>
+    <%@include file="taskPopup.jsp" %>
     <form:form method="POST" modelAttribute="currentTask" class="form-horizontal">
         <form:input type="hidden" path="id" id="task_id"/>
         <form:input type="hidden" path="employer" value="${employer.id}"/>
@@ -45,11 +46,8 @@
 
                 </div>
             </div>
-        </div>
 
-
-        <div class="manage-generic-container">
-            <div class="row">
+            <div class="row marginTop">
                 <div class="form-group col-md-12">
                     <label class="col-md-3 control-lable" for="startOfTheRout">From:</label>
                     <div class="col-md-7">
@@ -98,6 +96,7 @@
                 </div>
             </div>
         </div>
+
         <div class="map-manage-generic-container">
             <div class="map-generic-container">
 
@@ -159,29 +158,6 @@
 </div>
 </div>
 </form:form>
-
-    <div class="modal fade" id="allTasksModal" tabindex="-1" role="dialog" aria-hidden="true" >
-        <div class="modal-dialog modal-lg" style="display:table;">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <table id="tableTasks" class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th data-field="id" id="taskID">ID</th>
-                            <th data-field="name">Name</th>
-                            <th data-field="description">Description</th>
-                            <th data-formatter="editButtonFormatter"></th>
-                            <th data-formatter="deleteButtonFormatter"></th>
-                        </tr>
-                        </thead>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 </body>
 </html>

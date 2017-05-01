@@ -3,7 +3,6 @@ var employerID = null;
 $(document).ready(function() {
     $('.showAll').on('click', function() {
         employerID = $(this).attr('data-id');
-
         $.ajax({
             type: "GET",
             url: 'http://localhost:8080/manage-employer/tasks-' + employerID,
@@ -11,11 +10,10 @@ $(document).ready(function() {
             contentType : 'application/json',
             success: function (tasks) {
 
-             $('#tableTasks').bootstrapTable({
-                data: tasks
-             });
-
+             $('#tableTasks').bootstrapTable({});
+             $('#tableTasks').bootstrapTable("load", tasks);
              $('#allTasksModal').modal('show');
+
             }
         });
     });
@@ -26,7 +24,13 @@ $(document).ready(function() {
        window.location.replace('http://localhost:8080/manage-employer-'+ employerID +'-task-' + taskId);
     });
 
+    $('#allTasksModal').on('hidden.bs.modal', '.modal', function () {
+         $('#tableTasks').clear();
+    });
+
 });
+
+
 
 function editButtonFormatter(value) {
             return '<button class="btn btn-success custom-width manageEmployer">Edit</button>';
