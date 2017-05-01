@@ -1,8 +1,17 @@
-var startRout = {lat: 37.77, lng: -122.447};
-var endRout = {lat: 37.768, lng: -122.511};
-var currentPosition = {lat: 37.760, lng: -122.447};
+var currentTask = null;
+var startLocation = null;
+var endLocation = null;
 
 function myMap() {
+
+    var currentTaskJson = $('#currentTask');
+        currentTask = parseJSON(currentTaskJson.val());
+    var startLocation = currentTask.startOfRoutLocation.split("-");
+    var endLocation = currentTask.endOfRoutLocation.split("-");
+
+    var startRout = {lat: startLocation[0], lng: startLocation[1]};
+    var endRout = {lat: endLocation[0], lng: endLocation[1]};
+    var currentPosition = {lat: 57.00, lng: 122.00};
 
     var directionsDisplay = new google.maps.DirectionsRenderer;
     var directionsService = new google.maps.DirectionsService;
@@ -52,5 +61,9 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
                 window.alert('Directions request failed due to ' + status);
             }
         });
+}
+
+function parseJSON(data) {
+    return window.JSON && window.JSON.parse ? window.JSON.parse( data ) : (new Function("return " + data))();
 }
 

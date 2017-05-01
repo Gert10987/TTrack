@@ -20,6 +20,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="static/js/showModal.js"></script>
     <script type="text/javascript" src="static/js/myMap.js"></script>
+
 </head>
 
 <body>
@@ -27,11 +28,11 @@
     <%@include file="authHeader.jsp" %>
     <%@include file="taskPopup.jsp" %>
     <form:form method="POST" modelAttribute="currentTask" class="form-horizontal">
+        <input type="hidden" id="currentTask" value="${currentTask}">
         <form:input type="hidden" path="id" id="task_id"/>
         <form:input type="hidden" path="employer.id" id="employer"/>
         <form:input type="hidden" path="endOfRoutLocation" id="endOfRoutLocation"/>
         <form:input type="hidden" path="startOfRoutLocation" id="startOfRoutLocation"/>
-
         <div class="photo-generic-container">
             <div class="post-thumb"><img src="/static/test" width="130" height="150" align="right"/></div>
             <div class="post-content">
