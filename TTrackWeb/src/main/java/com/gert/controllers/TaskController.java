@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -38,11 +39,21 @@ public class TaskController {
         int lastTaskId = tasks.size() - 1;
 
         model.addAttribute("employer", employer);
-        model.addAttribute("currentTask", tasks.get(currentTaskId));
         model.addAttribute("tasks", tasks);
         model.addAttribute("edit", true);
         model.addAttribute("nextTaskId", TaskTools.getNextId(lastTaskId, currentTaskId));
         model.addAttribute("previouslyTaskId", TaskTools.getPrevId(currentTaskId));
+
+        if (tasks.size() == Integer.parseInt(task)) {
+
+            Task newTask = new Task();
+            newTask.setEmployer(employer);
+            model.addAttribute("currentTask", newTask);
+
+        } else {
+
+            model.addAttribute("currentTask", tasks.get(currentTaskId));
+        }
 
         return "employer/manageEmployer";
     }
@@ -68,7 +79,10 @@ public class TaskController {
 
             Employer employer = employerService.findById(currentTask.getEmployer().getId());
             currentTask.setEmployer(employer);
-            taskService.updateTask(currentTask);
+            if (currentTask.getId() != null)
+                taskService.updateTask(currentTask);
+            else
+                taskService.saveTask(currentTask);
         }
         return "redirect:/manage-employer-"
                 + currentTask.getEmployer().getSsoId()

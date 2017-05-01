@@ -1,5 +1,5 @@
 var employerID = null;
-
+var employerTasks = null;
 $(document).ready(function() {
     $('.showAll').on('click', function() {
         employerID = $(this).attr('data-id');
@@ -10,6 +10,7 @@ $(document).ready(function() {
             contentType : 'application/json',
             success: function (tasks) {
 
+             employerTasks = tasks;
              $('#tableTasks').bootstrapTable({});
              $('#tableTasks').bootstrapTable("load", tasks);
              $('#allTasksModal').modal('show');
@@ -18,9 +19,12 @@ $(document).ready(function() {
     });
 
     $("#tableTasks").on("click-cell.bs.table", function (field, value, row, $el) {
-
        var taskId = $el.id - 1;
        window.location.replace('http://localhost:8080/manage-employer-'+ employerID +'-task-' + taskId);
+    });
+
+    $("#newTaskButton").on("click", function (field, value, row, $el) {
+       window.location.replace('http://localhost:8080/manage-employer-'+ employerID +'-task-' + employerTasks.length);
     });
 
     $('#allTasksModal').on('hidden.bs.modal', '.modal', function () {
