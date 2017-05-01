@@ -19,6 +19,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="static/js/showModal.js"></script>
+    <script type="text/javascript" src="static/js/myMap.js"></script>
 </head>
 
 <body>
@@ -99,12 +100,9 @@
 
         <div class="map-manage-generic-container">
             <div class="map-generic-container">
-
                 <div id="map" style="width:100%; height: 100%;">
-                    <script type="text/javascript" src="static/js/myMap.js"></script>
                     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2U93JXd0eI-qSD_dUCMa_MP4aSpJ1fAU&callback=myMap"></script>
                 </div>
-
             </div>
         </div>
 
