@@ -66,6 +66,8 @@ public class TaskController {
 
         } else {
 
+            Employer employer = employerService.findById(currentTask.getEmployer().getId());
+            currentTask.setEmployer(employer);
             taskService.updateTask(currentTask);
         }
         return "redirect:/manage-employer-"

@@ -27,7 +27,7 @@
     <%@include file="taskPopup.jsp" %>
     <form:form method="POST" modelAttribute="currentTask" class="form-horizontal">
         <form:input type="hidden" path="id" id="task_id"/>
-        <form:input type="hidden" path="employer" value="${employer.id}"/>
+        <form:input type="hidden" path="employer.id" id="employer"/>
         <form:input type="hidden" path="endOfRoutLocation" id="endOfRoutLocation"/>
         <form:input type="hidden" path="startOfRoutLocation" id="startOfRoutLocation"/>
 
@@ -102,7 +102,7 @@
 
                 <div id="map" style="width:100%; height: 100%;">
                     <script type="text/javascript" src="static/js/myMap.js"></script>
-                    <script src="https://maps.googleapis.com/maps/api/js?key=KEY&callback=myMap"></script>
+                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2U93JXd0eI-qSD_dUCMa_MP4aSpJ1fAU&callback=myMap"></script>
                 </div>
 
             </div>

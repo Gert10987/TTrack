@@ -13,7 +13,6 @@ $(document).ready(function() {
              $('#tableTasks').bootstrapTable({});
              $('#tableTasks').bootstrapTable("load", tasks);
              $('#allTasksModal').modal('show');
-
             }
         });
     });
@@ -27,7 +26,6 @@ $(document).ready(function() {
     $('#allTasksModal').on('hidden.bs.modal', '.modal', function () {
          $('#tableTasks').clear();
     });
-
 });
 
 
