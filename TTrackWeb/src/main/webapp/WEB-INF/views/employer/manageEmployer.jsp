@@ -20,7 +20,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="static/js/showModal.js"></script>
     <script type="text/javascript" src="static/js/myMap.js"></script>
-
 </head>
 
 <body>
@@ -29,6 +28,9 @@
     <%@include file="taskPopup.jsp" %>
     <form:form method="POST" modelAttribute="currentTask" class="form-horizontal">
         <input type="hidden" id="currentTask" value="${currentTask}">
+        <input type="hidden" id="currentTaskJson" value='${currentTaskJson}'/>
+        <input type="hidden" id="employerCurrentPosition" value='${employer.currentPosition}'/>
+
         <form:input type="hidden" path="id" id="task_id"/>
         <form:input type="hidden" path="employer.id" id="employer"/>
         <form:input type="hidden" path="endOfRoutLocation" id="endOfRoutLocation"/>

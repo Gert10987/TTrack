@@ -17,7 +17,7 @@ public class Task implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "TASK_ID")
-    private Integer id;
+    public Integer id;
 
     @NotEmpty
     @Column(name = "NAME", unique = true, nullable = false)

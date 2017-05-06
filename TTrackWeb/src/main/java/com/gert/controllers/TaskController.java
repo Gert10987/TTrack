@@ -1,5 +1,7 @@
 package com.gert.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gert.model.employer.Employer;
 import com.gert.model.task.Task;
 import com.gert.service.employer.EmployerService;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -31,32 +34,41 @@ public class TaskController {
     EmployerService employerService;
 
     @RequestMapping(value = {"/manage-employer-{ssoId}-task-{task}"}, method = RequestMethod.GET)
-    public String editEmployer(@PathVariable String ssoId, @PathVariable String task, ModelMap model) {
+    public ModelAndView editEmployer(@PathVariable String ssoId, @PathVariable String task, ModelMap model) throws JsonProcessingException {
 
         Employer employer = employerService.findBySSO(ssoId);
         List<Task> tasks = taskService.findAllTasksByEmployer(employer);
 
+        ObjectMapper mapper = new ObjectMapper();
+
         int currentTaskId = Integer.parseInt(task);
         int lastTaskId = tasks.size() - 1;
 
-        model.addAttribute("employer", employer);
-        model.addAttribute("tasks", tasks);
-        model.addAttribute("edit", true);
-        model.addAttribute("nextTaskId", TaskTools.getNextId(lastTaskId, currentTaskId));
-        model.addAttribute("previouslyTaskId", TaskTools.getPrevId(currentTaskId));
+        ModelAndView modelAndView = new ModelAndView("employer/manageEmployer");
+
+        modelAndView.addObject("employer", employer);
+        modelAndView.addObject("tasks", tasks);
+        modelAndView.addObject("edit", true);
+        modelAndView.addObject("nextTaskId", TaskTools.getNextId(lastTaskId, currentTaskId));
+        modelAndView.addObject("previouslyTaskId", TaskTools.getPrevId(currentTaskId));
 
         if (tasks.size() == Integer.parseInt(task)) {
 
             Task newTask = new Task();
             newTask.setEmployer(employer);
-            model.addAttribute("currentTask", newTask);
+
+            modelAndView.addObject("currentTask", newTask);
+            modelAndView.addObject("currentTaskJson", mapper.writeValueAsString(newTask));
 
         } else {
 
-            model.addAttribute("currentTask", tasks.get(currentTaskId));
+            Task curentTask = tasks.get(currentTaskId);
+
+            modelAndView.addObject("currentTask", curentTask);
+            modelAndView.addObject("currentTaskJson", mapper.writeValueAsString((curentTask)));
         }
 
-        return "employer/manageEmployer";
+        return modelAndView;
     }
 
     @RequestMapping(value = {"/manage-employer/tasks-{ssoId}"}, method = RequestMethod.GET)

@@ -20,7 +20,7 @@ public class Employer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "EMPLOYER_ID")
-    private Integer id;
+    public Integer id;
 
     @NotEmpty
     @Column(name = "SSO_ID", unique = true, nullable = false)
@@ -45,6 +45,10 @@ public class Employer implements Serializable {
     @NotEmpty
     @Column(name = "PHONE", nullable = false)
     private String phone;
+
+    @NotEmpty
+    @Column(name = "CURRENT_POSITION", nullable = false)
+    private String currentPosition;
 
     @Lob
     @Column(name= "IMAGE")
@@ -140,6 +144,14 @@ public class Employer implements Serializable {
         this.image = image;
     }
 
+    public String getCurrentPosition() {
+        return currentPosition;
+    }
+
+    public void setCurrentPosition(String currentPosition) {
+        this.currentPosition = currentPosition;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -177,6 +189,7 @@ public class Employer implements Serializable {
                 + ", firstName=" + firstName + ", lastName=" + lastName
                 + ", email=" + email + "]";
     }
+
 
 
 }
