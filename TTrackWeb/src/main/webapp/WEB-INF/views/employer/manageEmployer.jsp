@@ -51,7 +51,7 @@
                         <div class="form-actions">
                             <input type="submit" value="Update" class="btn btn-primary"/>
                             <button type="button" data-id="${employer.ssoId}"
-                                    class="btn btn-warning">ShowAll
+                                    class="btn btn-warning ShowAll">ShowAll
                             </button>
                         </div>
                         <div class="row marginTop">
@@ -100,7 +100,7 @@
                         </div>
                     </div>
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">.
-                        <div class="img-responsive"><img src="/static/test3"/></div>
+                        <div class="img-responsive"><img src="/static/test"/></div>
                     </div>
                 </div>
             </div>
@@ -126,7 +126,7 @@
                 <form class="form-horizontal marginRight">
                     <div class="form-group">
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" for="name">Name of Task:</label>
+                            <label class="col-lg-2 control-label" for="name">Task:</label>
                             <div class="col-sm-10">
                                 <form:input type="text" path="name" id="name"
                                             class="form-control input-sm"/>

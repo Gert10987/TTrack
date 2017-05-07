@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg" style="display:table;">
         <div class="modal-content">
             <div class="modal-body">
-                <table id="tableTasks" class="table table-hover">
+                <table id="tableTasks" class="table-responsive">
                     <thead>
                     <tr>
                         <th data-field="id" id="taskID">ID</th>
