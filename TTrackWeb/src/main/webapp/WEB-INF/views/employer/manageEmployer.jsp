@@ -41,7 +41,7 @@
             <div class="col-sm-6 col-md-6 col-lg-6">
                 <div class="embed-responsive embed-responsive-16by9">
                     <div id="map" class="embed-responsive-item" style="border: 1px solid black"></div>
-                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2U93JXd0eI-qSD_dUCMa_MP4aSpJ1fAU&callback=myMap"></script>
+                    <script src="https://maps.googleapis.com/maps/api/js?key=KEY&callback=myMap"></script>
                 </div>
             </div>
             <div class="col-sm-6 col-md-6 col-lg-6">
