@@ -52,15 +52,17 @@ function parseJSON(data) {
 
 function initValues(){
 
+
     var currentTaskJson = $('#currentTaskJson').val()
     var currentPosition = $('#employerCurrentPosition').val().split(",");
     var currentTask = parseJSON(currentTaskJson);
+
     var startLocation = currentTask.startOfRoutLocation.split(",");
     var endLocation = currentTask.endOfRoutLocation.split(",");
 
-    currPosition = {lat: parseFloat(currentPosition[0]), lng: parseFloat(currentPosition[1])};
     startRout = {lat: parseFloat(startLocation[0]), lng: parseFloat(startLocation[1])};
     endRout = {lat: parseFloat(endLocation[0]), lng: parseFloat(endLocation[1])};
+    currPosition = {lat: parseFloat(currentPosition[0]), lng: parseFloat(currentPosition[1])};
 
 }
 

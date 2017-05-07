@@ -28,7 +28,7 @@ background-image: linear-gradient(to top, #deddc8 0%, #deddc8 8%, #2F2F2F 100%, 
 
 .floatRight{
 	float:right;
-	margin-right: 18px;
+	margin-right: 1%;
 }
 
 .has-error{
@@ -115,7 +115,7 @@ background-image: linear-gradient(to top, #deddc8 0%, #deddc8 8%, #2F2F2F 100%, 
 }
 
 .map-generic-container {
-  display: inline-block;
+  display: fixed;
   position:absolute;
   width:47%;
   height: 62.2%;
@@ -128,8 +128,6 @@ background-image: linear-gradient(to top, #deddc8 0%, #deddc8 8%, #2F2F2F 100%, 
   box-shadow: 0 0 30px black;
   background-color: 88cb73;
 }
-
-
 
 .custom-width {
     width: 80px !important;
@@ -170,7 +168,7 @@ body, #mainWrapper, .form-control{
 
 .btnMargin{
 
-    margin-right: 15px;
+    margin-left: 1%;
 
 }
 
@@ -212,6 +210,17 @@ body, #mainWrapper, .form-control{
 .marginTop{
 
     margin-Top: 50px;
+
+}
+
+.marginRight{
+
+    margin-right: 12%;
+
+}
+.marginLeft{
+
+    margin-left: 13%;
 
 }
 
