@@ -24,4 +24,6 @@ public interface TaskService {
     void deleteTaskByName(String name);
 
     List<Task> findAllTasksByEmployer(Employer employer);
+
+    List<Task> findAllTasksByEmployerSsoId(String ssoId);
 }

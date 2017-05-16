@@ -78,4 +78,14 @@ public class TaskDaoImpl extends AbstractDao<Integer, Task> implements TaskDao {
         return tasks;
     }
 
+    public List<Task> findAllTaskByEmployerSsoId(String ssoId) {
+
+        Criteria criteria = createEntityCriteria().addOrder(Order.asc("id"));
+        criteria.createAlias("employer", "emp");
+        criteria.add(Restrictions.eq("emp.ssoId", ssoId));
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);//To avoid duplicates.
+        List<Task> tasks = (List<Task>) criteria.list();
+
+        return tasks;
+    }
 }
