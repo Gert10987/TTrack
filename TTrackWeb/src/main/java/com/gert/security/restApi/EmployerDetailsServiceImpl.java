@@ -30,11 +30,11 @@ public class EmployerDetailsServiceImpl implements UserDetailsService, Initializ
     }
 
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {
+    public UserDetails loadUserByUsername(String employerName) throws UsernameNotFoundException, DataAccessException {
         try {
-            Employer account = employerService.findBySSO(username);
+            Employer account = employerService.findBySSO(employerName);
             if (account == null) {
-                throw new UsernameNotFoundException("Could not find email: " + username + "in the DB.");
+                throw new UsernameNotFoundException("Could not find: " + employerName + "in the DB.");
             }
 
             List<GrantedAuthority> auths = new ArrayList<GrantedAuthority>();
@@ -42,14 +42,14 @@ public class EmployerDetailsServiceImpl implements UserDetailsService, Initializ
 
             ApplicationUser user = null;
             try {
-                user = new ApplicationUser(account.getId().longValue(), username, account.getPassword(), true, true, true, true, auths);
+                user = new ApplicationUser(account.getId().longValue(), employerName, account.getPassword(), true, true, true, true, auths);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
             return user;
         } catch (Exception e) {
             e.printStackTrace();
-            throw new UsernameNotFoundException(username + "not found", e);
+            throw new UsernameNotFoundException(employerName + "not found", e);
         }
     }
 
