@@ -112,8 +112,5 @@ public class SecurityConfig {
         public AuthenticationTrustResolver getAuthenticationTrustResolver() {
             return new AuthenticationTrustResolverImpl();
         }
-
-
     }
-
 }
