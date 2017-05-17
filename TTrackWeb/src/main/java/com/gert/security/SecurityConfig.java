@@ -27,8 +27,6 @@ public class SecurityConfig {
     @Order(1)
     public static class RestApiSecurityConfig extends WebSecurityConfigurerAdapter {
 
-        private String tokenKey = "some token goes here";
-
         private String REALM="MY_TEST_REALM";
 
         @Qualifier("employerServiceRestApi")
