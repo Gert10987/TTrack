@@ -100,7 +100,7 @@
                         </div>
                     </div>
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">.
-                        <div class="img-responsive"><img src="/static/test"/></div>
+                        <div class="img-responsive"><img src="/static/image/test"/></div>
                     </div>
                 </div>
             </div>
