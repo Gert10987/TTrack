@@ -214,6 +214,16 @@ public class AppController {
         }
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String getloginPage() {
+
+        if (isCurrentAuthenticationAnonymous()) {
+            return "common/login";
+        } else {
+            return "redirect:/list";
+        }
+    }
+
     /**
      * This method handles logout requests.
      * Toggle the handlers if you are RememberMe functionality is useless in your app.

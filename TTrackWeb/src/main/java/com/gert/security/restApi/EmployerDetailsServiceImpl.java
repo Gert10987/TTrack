@@ -38,7 +38,7 @@ public class EmployerDetailsServiceImpl implements UserDetailsService, Initializ
             }
 
             List<GrantedAuthority> auths = new ArrayList<GrantedAuthority>();
-            auths.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+            auths.add(new SimpleGrantedAuthority("ROLE_USER"));
 
             ApplicationUser user = null;
             try {
